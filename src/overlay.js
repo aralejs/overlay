@@ -39,18 +39,16 @@ define(function(require, exports, module) {
             this.on('show hidden sync', shim.sync, shim);
         },
 
-        render: function() {
+        renderUI: function() {
             this.content && this.$element.html(this.content);
-            this.$element.appendTo(this.parentNode);
+            this.element.appendTo(this.parentNode);
             this.sync();
-
-            return this;
         },
 
         sync: function() {
             this.trigger('sync');
 
-            this.$element.css({
+            this.element.css({
                 width: this.width,
                 height: this.height,
                 zIndex: this.zIndex,
@@ -68,12 +66,12 @@ define(function(require, exports, module) {
 
         show: function() {
             this.trigger('show');
-            this.$element.show();
+            this.element.show();
             return this;
         },
 
         hide: function() {
-            this.$element.hide();
+            this.element.hide();
             this.trigger('hidden');
             return this;
         }

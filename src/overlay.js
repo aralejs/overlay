@@ -63,8 +63,8 @@ define(function(require, exports, module) {
 
         // 进行定位
         setPosition: function(position) {
-            // 还不在文档流中，定位无效
-            if (!this._isInDocument()) return;
+            // 不在文档流中，定位无效
+            if (!isInDocument(this.element[0])) return;
 
             position || (position = this.get('position'));
             var isHidden = this.isHidden();
@@ -92,10 +92,6 @@ define(function(require, exports, module) {
             return this;
         },
 
-        _isInDocument: function() {
-          var parentNode = this.element[0].parentNode;
-            return parentNode && parentNode.nodeType === 1;
-        },
 
         // 判断元素是否显示
         isHidden: function() {
@@ -143,5 +139,13 @@ define(function(require, exports, module) {
     });
 
     module.exports = Overlay;
+
+
+    // Helpers
+    // -------
+
+    function isInDocument(element) {
+        return $.contains(document.documentElement, element);
+    }
 
 });

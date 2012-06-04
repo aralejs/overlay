@@ -43,18 +43,15 @@ define(function(require, exports, module) {
 
             // 在插入到文档流后，重新定位一次
             this._setPosition();
-
-            // 标明已渲染过
-            this._rendered = true;
-
             return this;
         },
 
         show: function() {
             // 若从未渲染，则调用 render
-            if (!this._rendered) {
+            if (!this.rendered) {
                 this.render();
             }
+
             this.set('visible', true);
             return this;
         },
@@ -75,7 +72,7 @@ define(function(require, exports, module) {
             if (!isInDocument(this.element[0])) return;
 
             align || (align = this.get('align'));
-            var isHidden = this.element.is(':hidden');
+            var isHidden = !this.get('visible') || this.element.is(':hidden');
 
             // 在定位时，为避免元素高度不定，先显示出来
             if (isHidden) {
@@ -135,7 +132,8 @@ define(function(require, exports, module) {
         },
 
         _onRenderClassName: function(val, prev) {
-            this.element.removeClass(prev).addClass(val);
+            prev && this.element.removeClass(prev);
+            this.element.addClass(val);
         },
 
         _onRenderStyle: function(val) {

@@ -2,7 +2,8 @@ define(function(require, exports, module) {
 
     var $ = require('$'),
         Overlay = require('./overlay'),
-        isIE6 = ($.browser || 0).msie && $.browser.version == 6.0;
+        isIE6 = ($.browser || 0).msie && $.browser.version == 6.0,
+        body = $(document.body);
 
 
     // Mask
@@ -12,23 +13,19 @@ define(function(require, exports, module) {
     var Mask = Overlay.extend({
 
         attrs: {
-            template: '<div id="J_mask"></div>',
-            width: (isIE6 ? $(document.body).outerWidth(true) : '100%'),
-            height: (isIE6 ? $(document.body).outerHeight(true) : '100%'),
-            opacity: 0.2,
-            backgroundColor: '#000',
-            visible: 'false',
+            width: isIE6 ? body.outerWidth(true) : '100%',
+            height: isIE6 ? body.outerHeight(true) : '100%',
+
+            style: {
+                opacity: .2,
+                backgroundColor: '#000',
+                position: isIE6 ? 'absolute' : 'fixed'
+            },
+
             align: {
                 // undefined 表示相对于当前可视范围定位
-                baseElement: isIE6 ? document.body : undefined,
-                baseXY: [0, 0]
+                baseElement: isIE6 ? body : undefined
             }
-        },
-
-        setup: function() {
-            this.element.css({
-                'position': (isIE6 ? 'absolute' : 'fixed')
-            });
         },
 
         _onRenderBackgroundColor: function(val) {
@@ -38,18 +35,9 @@ define(function(require, exports, module) {
         _onRenderOpacity: function(val) {
             this.element.css('opacity', val);
         }
-
     });
 
-
-    var maskInstance;
-
-    module.exports = (function() {
-        if (!maskInstance) {
-            maskInstance = new Mask({});
-        }
-        return maskInstance;
-    })();
+    // 单例
+    module.exports = new Mask();
 
 });
-

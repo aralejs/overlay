@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Overlay</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+        
+        <link rel="stylesheet" href="../assets/base.css" />
+        <link rel="stylesheet" href="../assets/style.css" />
+        <link rel="stylesheet" href="../assets/pygments.css" />
+        <script src="http://aralejs.org/dist/seajs/1.2.0/sea.js" id="seajsnode"></script>
+        
+<script src="../assets/seajs-help.js"></script>
+
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="../assets/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header id="header">
+            <h1 id="brand"><a href="http://aralejs.org/">Arale</a></h1>
+            <nav id="nav" role="navigation">
+                <a href="../">Overlay</a>
+                
+                <a href="../examples/">Examples</a>
+                
+                
+                <a id="nav-test" href="../tests/runner.html">Tests</a>
+                
+            </nav>
+        </header>
+
+        <div id="main">
+            
+            <div class="container">
+    <style>
+.parent{
+    position:relative;
+    float:right;
+    border:1px solid #ccc;
+}
+.example2 {
+    color: #fff;
+    background-color: red;
+    border:1px solid #ccc;
+}
+</style>
+
+<ol>
+<li>目标元素1定位在基准元素1的右边，高宽分别为30，底色红色。</li>
+</ol>
+
+<div id="c" class="parent">目标元素1的父节点</div>
+<div id="a">基准元素1</div>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;../src/overlay&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Overlay</span><span class="p">({</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;目标元素1&lt;/div&gt;&#39;</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="nx">parentNode</span><span class="o">:</span> <span class="s1">&#39;#c&#39;</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;overlay&#39;</span><span class="p">,</span>
+        <span class="nx">style</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#fff&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">selfXY</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;-100%&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="nx">baseElement</span><span class="o">:</span> <span class="s1">&#39;#a&#39;</span><span class="p">,</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nx">o</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="nx">o</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span>
+    <span class="p">});</span>
+    <span class="nx">o</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<script type="text/javascript">
+seajs.use('../src/overlay', function(Overlay) {
+    var o = new Overlay({
+        template: '<div class="overlay">目标元素1</div>',
+        height: 30,
+        parentNode: '#c',
+        id: 'overlay',
+        style: {
+            color: '#fff'
+        },
+        align: {
+            selfXY: ['-100%', 0],
+            baseElement: '#a',
+            baseXY: [0, 0]
+        }
+    });
+    o.show();
+    o.set('style', {
+        backgroundColor: 'red'
+    });
+    o.set('width', 100);
+});
+</script>
+
+<ol>
+<li>目标元素2，宽80高30，位置为可视区域top:300 left:100。</li>
+</ol>
+
+<div id="b" class="example2">目标元素2</div>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;../src/overlay&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Overlay</span><span class="p">({</span>
+        <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#b&#39;</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nx">o2</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+
+<script type="text/javascript">
+seajs.use('../src/overlay', function(Overlay) {
+
+    var o2 = new Overlay({
+        element: '#b',
+        width: 80,
+        height: 30,
+        align: {
+            baseXY: [100, 300]
+        }
+    });
+    o2.show();
+});
+</script>
+
+</div>
+
+        </div>
+        <hr class="end" />
+    </body>
+</html>

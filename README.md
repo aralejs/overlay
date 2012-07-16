@@ -8,9 +8,9 @@
 
 ## 模块依赖
 
- - [seajs](seajs/README.md)
- - [jquery](jquery/README.md)
- - [position](position/README.md)
+ - seajs
+ - jquery
+ - position
 
 
 ## 配置说明
@@ -148,17 +148,6 @@
     改变默认配置：
 
         mask.set({ backgroundColor:'red', opacity:0.5 }).show();
-
-
-## 演示页面
-
- - [examples/overlay.html](http://aralejs.org/lib/overlay/examples/overlay.html)
- - [examples/mask.html](http://aralejs.org/lib/overlay/examples/mask.html)
-
-
-## 测试用例
-
-* <http://aralejs.org/lib/overlay/tests/runner.html>
 
 
 ## 交流讨论

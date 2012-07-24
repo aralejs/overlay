@@ -1,4 +1,4 @@
-define("#overlay/0.9.7/overlay-debug", ["#iframe-shim/0.9.2/iframe-shim-debug", "#jquery/1.7.2/jquery-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#widget/0.9.16/daparser-debug", "#widget/0.9.16/auto-render-debug", "#base/0.9.16/base-debug", "base/0.9.16/aspect-debug", "base/0.9.16/attribute-debug", "#class/0.9.2/class-debug", "#events/0.9.1/events-debug"], function(require, exports, module) {
+define("#overlay/0.9.7/overlay-debug", ["#position/0.9.2/position-debug", "#jquery/1.7.2/jquery-debug", "#iframe-shim/0.9.2/iframe-shim-debug", "#widget/0.9.16/widget-debug", "#widget/0.9.16/daparser-debug", "#widget/0.9.16/auto-render-debug", "#base/0.9.16/base-debug", "#base/0.9.16/aspect-debug", "#base/0.9.16/attribute-debug", "#class/0.9.2/class-debug", "#events/0.9.1/events-debug"], function(require, exports, module) {
 
     var $ = require('#jquery/1.7.2/jquery-debug'),
         Position = require('#position/0.9.2/position-debug'),

@@ -108,7 +108,27 @@ define(function(require, exports, module) {
                 }
             }
         },
+        
+        _blurHide: function(relativeElements) {
+            var that = this;
 
+            var clickFn = function(e) {
+                var tempArr = [];
+                tempArr.push(that.element);
+                tempArr = tempArr.concat(relativeElements||[]);
+
+                for (var i=0; i<tempArr.length; i++) {
+                    if(e.target === tempArr[i][0]) {
+                        return;
+                    }    
+                }
+                that.hide();
+            };
+            $(document).bind('click', function(e) {
+                clickFn(e);
+                $(document).unbind('click', clickFn);                
+            });
+        },
 
         // 用于 set 属性后的界面更新
 
@@ -145,3 +165,4 @@ define(function(require, exports, module) {
     }
 
 });
+

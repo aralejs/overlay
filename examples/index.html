@@ -4,16 +4,15 @@
         <meta charset="UTF-8">
         <title>Overlay</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+        <link rel="stylesheet" href="http://aralejs.github.com/assets/base.css" />
+        <link rel="stylesheet" href="http://aralejs.github.com/assets/style.css" />
+        <link rel="stylesheet" href="http://aralejs.github.com/assets/pygments.css" />
+        <script src="https://a.alipayobjects.com/static/arale/seajs/1.2.0/sea.js"></script>
         
-        <link rel="stylesheet" href="../assets/base.css" />
-        <link rel="stylesheet" href="../assets/style.css" />
-        <link rel="stylesheet" href="../assets/pygments.css" />
-        <script src="http://aralejs.org/dist/seajs/1.2.0/sea.js" id="seajsnode"></script>
-        
-<script src="../assets/seajs-help.js"></script>
+<script src="http://aralejs.github.com/tools/seajs-help.js"></script>
 
         <!--[if lt IE 9]>
-        <script type="text/javascript" src="../assets/html5shiv.js"></script>
+        <script type="text/javascript" src="http://aralejs.github.com/assets/html5shiv.js"></script>
         <![endif]-->
     </head>
     <body>
@@ -21,7 +20,6 @@
             <h1 id="brand"><a href="http://aralejs.org/">Arale</a></h1>
             <nav id="nav" role="navigation">
                 <a href="../">Overlay</a>
-                
                 <a href="../examples/">Examples</a>
                 
                 
@@ -31,9 +29,17 @@
         </header>
 
         <div id="main">
-            
             <div class="container">
-    <style>
+
+<nav id="side-nav">
+    
+    <a href="../examples/index.html">index</a>
+    
+    <a href="../examples/mask.html">mask</a>
+    
+</nav>
+
+<style>
 .parent{
     position:relative;
     float:right;
@@ -45,10 +51,7 @@
     border:1px solid #ccc;
 }
 </style>
-
-<ol>
-<li>目标元素1定位在基准元素1的右边，高宽分别为30，底色红色。</li>
-</ol>
+<p>目标元素1定位在基准元素1的右边，高宽分别为30，底色红色。</p>
 
 <div id="c" class="parent">目标元素1的父节点</div>
 <div id="a">基准元素1</div>
@@ -98,10 +101,7 @@ seajs.use('../src/overlay', function(Overlay) {
     o.set('width', 100);
 });
 </script>
-
-<ol>
-<li>目标元素2，宽80高30，位置为可视区域top:300 left:100。</li>
-</ol>
+<p>目标元素2，宽80高30，位置为可视区域top:300 left:100。</p>
 
 <div id="b" class="example2">目标元素2</div>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;../src/overlay&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">)</span> <span class="p">{</span>
@@ -133,9 +133,10 @@ seajs.use('../src/overlay', function(Overlay) {
 });
 </script>
 
-</div>
 
+            </div>
         </div>
         <hr class="end" />
+        <a id="github" href="https://github.com/aralejs/overlay" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:999" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     </body>
 </html>

@@ -4,16 +4,15 @@
         <meta charset="UTF-8">
         <title>Overlay</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+        <link rel="stylesheet" href="http://aralejs.github.com/assets/base.css" />
+        <link rel="stylesheet" href="http://aralejs.github.com/assets/style.css" />
+        <link rel="stylesheet" href="http://aralejs.github.com/assets/pygments.css" />
+        <script src="https://a.alipayobjects.com/static/arale/seajs/1.2.0/sea.js"></script>
         
-        <link rel="stylesheet" href="../assets/base.css" />
-        <link rel="stylesheet" href="../assets/style.css" />
-        <link rel="stylesheet" href="../assets/pygments.css" />
-        <script src="http://aralejs.org/dist/seajs/1.2.0/sea.js" id="seajsnode"></script>
-        
-<script src="../assets/seajs-help.js"></script>
+<script src="http://aralejs.github.com/tools/seajs-help.js"></script>
 
         <!--[if lt IE 9]>
-        <script type="text/javascript" src="../assets/html5shiv.js"></script>
+        <script type="text/javascript" src="http://aralejs.github.com/assets/html5shiv.js"></script>
         <![endif]-->
     </head>
     <body>
@@ -21,7 +20,6 @@
             <h1 id="brand"><a href="http://aralejs.org/">Arale</a></h1>
             <nav id="nav" role="navigation">
                 <a href="../">Overlay</a>
-                
                 <a href="../examples/">Examples</a>
                 
                 
@@ -31,9 +29,17 @@
         </header>
 
         <div id="main">
-            
             <div class="container">
-    <ol>
+
+<nav id="side-nav">
+    
+    <a href="../examples/index.html">index</a>
+    
+    <a href="../examples/mask.html">mask</a>
+    
+</nav>
+
+<ol>
 <li>显示默认遮罩层：mask.show();</li>
 </ol>
 <p><button id="a">点击显示默认遮罩层</button></p>
@@ -79,9 +85,10 @@ seajs.use('../src/mask', function(mask) {
 });
 </script>
 
-</div>
 
+            </div>
         </div>
         <hr class="end" />
+        <a id="github" href="https://github.com/aralejs/overlay" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:999" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     </body>
 </html>

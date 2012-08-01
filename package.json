@@ -1,6 +1,6 @@
 {
     "name": "overlay",
-    "version": "0.9.8",
+    "version": "0.9.9",
     "dependencies": {
         "$":"$",
         "widget": "widget/0.9.16/widget",

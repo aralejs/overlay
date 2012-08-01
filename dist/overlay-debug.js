@@ -1,4 +1,4 @@
-define("#overlay/0.9.8/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug"], function(require, exports, module) {
+define("#overlay/0.9.9/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         Position = require('#position/0.9.2/position-debug'),
@@ -125,8 +125,7 @@ define("#overlay/0.9.8/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-sh
                 that.hide();
             };
             $(document).bind('click', function(e) {
-                clickFn(e);
-                $(document).unbind('click', clickFn);                
+                that.get('visible') && clickFn(e);
             });
         },
 

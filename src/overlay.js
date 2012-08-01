@@ -109,6 +109,7 @@ define(function(require, exports, module) {
             }
         },
         
+        // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
         _blurHide: function(relativeElements) {
             var that = this;
 
@@ -118,7 +119,7 @@ define(function(require, exports, module) {
                 tempArr = tempArr.concat(relativeElements||[]);
 
                 for (var i=0; i<tempArr.length; i++) {
-                    if(e.target === tempArr[i][0]) {
+                    if(e.target === $(tempArr[i])[0]) {
                         return;
                     }    
                 }

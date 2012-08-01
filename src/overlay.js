@@ -125,8 +125,7 @@ define(function(require, exports, module) {
                 that.hide();
             };
             $(document).bind('click', function(e) {
-                clickFn(e);
-                $(document).unbind('click', clickFn);                
+                that.get('visible') && clickFn(e);
             });
         },
 

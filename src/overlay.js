@@ -126,7 +126,7 @@ define(function(require, exports, module) {
                 }
                 that.hide();
             };
-            $(document).on('click', function(e) {
+            $(document).one('click', function(e) {
                 clickFn(e);
             });
         },

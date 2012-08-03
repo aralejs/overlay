@@ -117,20 +117,16 @@ define(function(require, exports, module) {
                 var tempArr = [];
                 tempArr.push(that.element);
                 tempArr = tempArr.concat(relativeElements||[]);
-                console.log(tempArr);
 
                 for (var i=0; i<tempArr.length; i++) {
                     var el = $(tempArr[i])[0];
-                    console.log(el, e.target);
-                    console.log($.contains(el, e.target));
                     if ($.contains(el, e.target) || el === e.target) {
                         return;
                     } 
                 }
-                console.log('blurHide');
                 that.hide();
             };
-            $(document).on('click', function(e) {
+            $(document).one('click', function(e) {
                 clickFn(e);
             });
         },

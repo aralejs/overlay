@@ -120,6 +120,8 @@ define(function(require, exports, module) {
 
                 for (var i=0; i<tempArr.length; i++) {
                     var el = $(tempArr[i])[0];
+                    console.log(el, e.target);
+                    console.log($.contains(el, e.target));
                     if ($.contains(el, e.target) || el === e.target) {
                         return;
                     } 

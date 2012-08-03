@@ -126,6 +126,7 @@ define(function(require, exports, module) {
                         return;
                     } 
                 }
+                console.log('blurHide');
                 that.hide();
             };
             $(document).on('click', function(e) {

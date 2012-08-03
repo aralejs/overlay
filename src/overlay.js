@@ -118,6 +118,8 @@ define(function(require, exports, module) {
                 tempArr.push(that.element);
                 tempArr = tempArr.concat(relativeElements||[]);
 
+                console.log(tempArr);
+
                 for (var i=0; i<tempArr.length; i++) {
                     var el = $(tempArr[i])[0];
                     if ($.contains(el, e.target) || el === e.target) {

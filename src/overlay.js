@@ -119,8 +119,8 @@ define(function(require, exports, module) {
                 tempArr = tempArr.concat(relativeElements||[]);
 
                 for (var i=0; i<tempArr.length; i++) {
-                    var el = $(tempArr[i]);
-                    if (el.contains(e.target) || el[0] === e.target) {
+                    var el = $(tempArr[i])[0];
+                    if ($.contains(el, e.target) || el === e.target) {
                         return;
                     } 
                 }

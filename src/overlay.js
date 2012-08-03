@@ -118,7 +118,6 @@ define(function(require, exports, module) {
                 tempArr.push(that.element);
                 tempArr = tempArr.concat(relativeElements||[]);
 
-                console.log(tempArr);
                 for (var i=0; i<tempArr.length; i++) {
                     if(e.target === $(tempArr[i])[0]) {
                         return;
@@ -127,6 +126,7 @@ define(function(require, exports, module) {
                 that.hide();
             };
             $(document).on('click', function(e) {
+                console.log(typeof that.get('visible'));
                 that.get('visible') && clickFn(e);
             });
         },

@@ -101,63 +101,70 @@
 <h2>最佳实践</h2>
 
 <ol>
-<li><p>直接使用：</p>
-
-<pre><code>var overlay = new Overlay({
-    template: '&lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;',
-    width: 500,
-    height: 200,
-    zIndex: 99,
-    style: 'border:1px solid red;color:green;',
-    parentNode: '#c',
-    align: {
-        selfXY: ['-100%', 0],
-        baseElement: '#a',
-        baseXY: [0, 0]
-    }
-});
-overlay.show();
-// 修改元素样式
-overlay.set('style', {
-    backgroundColor: 'red',
-    border: '1px solid green'
-});
-// 非只读属性都可以通过 set 方法进行更新
-overlay.set('width', 500);
-overlay.set('className', 'myclass');</code></pre></li>
-<li><p>继承使用：</p>
-
-<pre><code>var Overlay = require('overlay');
-var Dialog = Overlay.extend({
-    attrs: {
-        trigger: null,
-        triggerType: 'click',
-        comfirmElement: null,
-        cancelElement: null,
-        closeElement: null,
-        hasMask: false,
-        onComfirm: function() {},
-        onClose: function() {}
-    },
-    setup: function() {
-
-    },
-    parseElement: function() {
-
-    }
-    delegateEvents: function() {
-
-    }
-});</code></pre></li>
-<li><p>Mask 组件的使用：</p>
-
-<pre><code>var mask = require('mask');
-mask.show();
-//mask.hide();</code></pre>
-<p>改变默认配置：</p>
-
-<pre><code>mask.set({ backgroundColor:'red', opacity:0.5 }).show();</code></pre></li>
+<li>直接使用：</li>
 </ol>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">overlay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Overlay</span><span class="p">({</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nx">zIndex</span><span class="o">:</span> <span class="mi">99</span><span class="p">,</span>
+    <span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;border:1px solid red;color:green;&#39;</span><span class="p">,</span>
+    <span class="nx">parentNode</span><span class="o">:</span> <span class="s1">&#39;#c&#39;</span><span class="p">,</span>
+    <span class="nx">align</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">selfXY</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;-100%&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="nx">baseElement</span><span class="o">:</span> <span class="s1">&#39;#a&#39;</span><span class="p">,</span>
+        <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">overlay</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+<span class="c1">// 修改元素样式</span>
+<span class="nx">overlay</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="nx">border</span><span class="o">:</span> <span class="s1">&#39;1px solid green&#39;</span>
+<span class="p">});</span>
+<span class="c1">// 非只读属性都可以通过 set 方法进行更新</span>
+<span class="nx">overlay</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+<span class="nx">overlay</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;className&#39;</span><span class="p">,</span> <span class="s1">&#39;myclass&#39;</span><span class="p">);</span>
+</pre></div>
+
+<ol>
+<li>继承使用：</li>
+</ol>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Overlay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;overlay&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Dialog</span> <span class="o">=</span> <span class="nx">Overlay</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">attrs</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">trigger</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nx">triggerType</span><span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span>
+        <span class="nx">comfirmElement</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nx">cancelElement</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nx">closeElement</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nx">hasMask</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">onComfirm</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
+        <span class="nx">onClose</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nx">setup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="p">},</span>
+    <span class="nx">parseElement</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+    <span class="nx">delegateEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+<ol>
+<li>Mask 组件的使用：</li>
+</ol>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">mask</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mask&#39;</span><span class="p">);</span>
+<span class="nx">mask</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+<span class="c1">//mask.hide();</span>
+</pre></div>
+
+<pre><code>改变默认配置：
+
+    mask.set({ backgroundColor:'red', opacity:0.5 }).show();</code></pre>
 
 <h2>交流讨论</h2>
 <p>欢迎创建

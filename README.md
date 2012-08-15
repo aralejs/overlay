@@ -91,59 +91,65 @@
 
 1. 直接使用：
 
-        var overlay = new Overlay({
-            template: '<div class="overlay"></div>',
-            width: 500,
-            height: 200,
-            zIndex: 99,
-            style: 'border:1px solid red;color:green;',
-            parentNode: '#c',
-            align: {
-                selfXY: ['-100%', 0],
-                baseElement: '#a',
-                baseXY: [0, 0]
-            }
-        });
-        overlay.show();
-        // 修改元素样式
-        overlay.set('style', {
-            backgroundColor: 'red',
-            border: '1px solid green'
-        });
-        // 非只读属性都可以通过 set 方法进行更新
-        overlay.set('width', 500);
-        overlay.set('className', 'myclass');
+```js
+var overlay = new Overlay({
+    template: '<div class="overlay"></div>',
+    width: 500,
+    height: 200,
+    zIndex: 99,
+    style: 'border:1px solid red;color:green;',
+    parentNode: '#c',
+    align: {
+        selfXY: ['-100%', 0],
+        baseElement: '#a',
+        baseXY: [0, 0]
+    }
+});
+overlay.show();
+// 修改元素样式
+overlay.set('style', {
+    backgroundColor: 'red',
+    border: '1px solid green'
+});
+// 非只读属性都可以通过 set 方法进行更新
+overlay.set('width', 500);
+overlay.set('className', 'myclass');
+```
 
 2. 继承使用：
 
-        var Overlay = require('overlay');
-        var Dialog = Overlay.extend({
-            attrs: {
-                trigger: null,
-                triggerType: 'click',
-                comfirmElement: null,
-                cancelElement: null,
-                closeElement: null,
-                hasMask: false,
-                onComfirm: function() {},
-                onClose: function() {}
-            },
-            setup: function() {
-                
-            },
-            parseElement: function() {
-                
-            }
-            delegateEvents: function() {
-                
-            }
-        });
+```js
+var Overlay = require('overlay');
+var Dialog = Overlay.extend({
+    attrs: {
+        trigger: null,
+        triggerType: 'click',
+        comfirmElement: null,
+        cancelElement: null,
+        closeElement: null,
+        hasMask: false,
+        onComfirm: function() {},
+        onClose: function() {}
+    },
+    setup: function() {
+        
+    },
+    parseElement: function() {
+        
+    }
+    delegateEvents: function() {
+        
+    }
+});
+```
 
 3. Mask 组件的使用：
 
-        var mask = require('mask');
-        mask.show();
-        //mask.hide();
+```js
+var mask = require('mask');
+mask.show();
+//mask.hide();
+```
 
     改变默认配置：
 

@@ -55,11 +55,13 @@
 
     定位对象，形似：
 
-        {
-            selfXY: [0, 0],     // element 的定位点，默认为左上角
-            baseElement: Position.VIEWPORT,     // 基准定位元素，默认为当前可视区域
-            baseXY: [0, 0]      // 基准定位元素的定位点，默认为左上角
-        }
+```js
+{
+    selfXY: [0, 0],     // element 的定位点，默认为左上角
+    baseElement: Position.VIEWPORT,     // 基准定位元素，默认为当前可视区域
+    baseXY: [0, 0]      // 基准定位元素的定位点，默认为左上角
+}
+```
 
     这块的定位原理可参照arale.position组件的pin方法。
 
@@ -151,9 +153,11 @@ mask.show();
 //mask.hide();
 ```
 
-    改变默认配置：
+改变默认配置：
 
-        mask.set({ backgroundColor:'red', opacity:0.5 }).show();
+```js
+mask.set({ backgroundColor:'red', opacity:0.5 }).show();
+```
 
 
 ## 交流讨论

@@ -119,14 +119,15 @@ define(function(require, exports, module) {
                 tempArr = tempArr.concat(relativeElements||[]);
 
                 for (var i=0; i<tempArr.length; i++) {
-                    if(e.target === $(tempArr[i])[0]) {
+                    var el = $(tempArr[i])[0];
+                    if ($.contains(el, e.target) || el === e.target) {
                         return;
-                    }    
+                    } 
                 }
                 that.hide();
             };
-            $(document).bind('click', function(e) {
-                that.get('visible') && clickFn(e);
+            $(document).one('click', function(e) {
+                clickFn(e);
             });
         },
 

@@ -1,4 +1,4 @@
-define("#overlay/0.9.9/mask-debug", ["./overlay-debug", "$-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug"], function(require, exports, module) {
+define("#overlay/0.9.9/mask-debug", ["./overlay-debug", "$-debug", "#position/0.9.2/position-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         Overlay = require('./overlay-debug'),

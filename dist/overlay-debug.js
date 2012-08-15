@@ -109,6 +109,7 @@ define("#overlay/0.9.9/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-sh
             }
         },
         
+        // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
         _blurHide: function(relativeElements) {
             var that = this;
 
@@ -118,14 +119,15 @@ define("#overlay/0.9.9/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-sh
                 tempArr = tempArr.concat(relativeElements||[]);
 
                 for (var i=0; i<tempArr.length; i++) {
-                    if(e.target === tempArr[i][0]) {
+                    var el = $(tempArr[i])[0];
+                    if ($.contains(el, e.target) || el === e.target) {
                         return;
-                    }    
+                    } 
                 }
                 that.hide();
             };
-            $(document).bind('click', function(e) {
-                that.get('visible') && clickFn(e);
+            $(document).one('click', function(e) {
+                clickFn(e);
             });
         },
 

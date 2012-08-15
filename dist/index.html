@@ -102,8 +102,7 @@
 <h2>最佳实践</h2>
 
 <ol>
-<li>直接使用：</li>
-</ol>
+<li><p>直接使用：</p>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">overlay</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Overlay</span><span class="p">({</span>
     <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
     <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
@@ -126,11 +125,8 @@
 <span class="c1">// 非只读属性都可以通过 set 方法进行更新</span>
 <span class="nx">overlay</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
 <span class="nx">overlay</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;className&#39;</span><span class="p">,</span> <span class="s1">&#39;myclass&#39;</span><span class="p">);</span>
-</pre></div>
-
-<ol>
-<li>继承使用：</li>
-</ol>
+</pre></div></li>
+<li><p>继承使用：</p>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">Overlay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;overlay&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">Dialog</span> <span class="o">=</span> <span class="nx">Overlay</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">attrs</span><span class="o">:</span> <span class="p">{</span>
@@ -153,18 +149,16 @@
 
     <span class="p">}</span>
 <span class="p">});</span>
-</pre></div>
-
-<ol>
-<li>Mask 组件的使用：</li>
-</ol>
+</pre></div></li>
+<li><p>Mask 组件的使用：</p>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">mask</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mask&#39;</span><span class="p">);</span>
 <span class="nx">mask</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
 <span class="c1">//mask.hide();</span>
 </pre></div>
 <p>改变默认配置：</p>
 <div class="highlight"><pre><span class="nx">mask</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span> <span class="nx">backgroundColor</span><span class="o">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="nx">opacity</span><span class="o">:</span><span class="mf">0.5</span> <span class="p">}).</span><span class="nx">show</span><span class="p">();</span>
-</pre></div>
+</pre></div></li>
+</ol>
 
 <h2>交流讨论</h2>
 <p>欢迎创建

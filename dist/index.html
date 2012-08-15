@@ -73,16 +73,14 @@
 <li><p><code>parentNode</code> {element}</p>
 <p>浮层的父元素，默认为document.body，只读。</p></li>
 <li><p><code>align</code> {object}</p>
-<p>定位对象，形似：</p></li>
-</ul>
+<p>定位对象，形似下面代码。这块的定位原理可参照arale.position组件的pin方法。</p>
 <div class="highlight"><pre><span class="p">{</span>
     <span class="nx">selfXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>     <span class="c1">// element 的定位点，默认为左上角</span>
     <span class="nx">baseElement</span><span class="o">:</span> <span class="nx">Position</span><span class="p">.</span><span class="nx">VIEWPORT</span><span class="p">,</span>     <span class="c1">// 基准定位元素，默认为当前可视区域</span>
     <span class="nx">baseXY</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>      <span class="c1">// 基准定位元素的定位点，默认为左上角</span>
 <span class="p">}</span>
-</pre></div>
-
-<pre><code>这块的定位原理可参照arale.position组件的pin方法。</code></pre>
+</pre></div></li>
+</ul>
 
 <h2>方法说明</h2>
 

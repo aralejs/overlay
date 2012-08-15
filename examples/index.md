@@ -2,25 +2,25 @@
 .parent{
     position:relative;
     float:right;
-    border:1px solid #ccc;
 }
-.example2 {
+.example {
     color: #fff;
-    background-color: red;
-    border:1px solid #ccc;
+    background-color: #89c237;
+    display:inline-block;
 }
 </style>
 
+## 1. 基本浮层
+
 目标元素1定位在基准元素1的右边，高宽分别为30，底色红色。
 
-<div id="c" class="parent">目标元素1的父节点</div>
-<div id="a">基准元素1</div>
+<div id="c"></div>
+<div id="a" class="example">基准元素1</div>
 
 ```javascript
 seajs.use('../src/overlay', function(Overlay) {
     var o = new Overlay({
         template: '<div class="overlay">目标元素1</div>',
-        height: 30,
         parentNode: '#c',
         id: 'overlay',
         style: {
@@ -34,25 +34,24 @@ seajs.use('../src/overlay', function(Overlay) {
     });
     o.show();
     o.set('style', {
-        backgroundColor: 'red'
+        backgroundColor: '#f53379'
     });
     o.set('width', 100);
 });
 ```
+## 2. 全局定位浮层
 
-目标元素2，宽80高30，位置为可视区域top:300 left:100。
+目标元素2，宽80高30，位置为可视区域top:300 left:200。
 
-<div id="b" class="example2">目标元素2</div>
+<div id="b" class="example">目标元素2</div>
 
 ```javascript
 seajs.use('../src/overlay', function(Overlay) {
-
     var o2 = new Overlay({
         element: '#b',
-        width: 80,
-        height: 30,
+        width: 100,
         align: {
-            baseXY: [100, 300]
+            baseXY: [200, 300]
         }
     });
     o2.show();

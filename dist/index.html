@@ -4,33 +4,39 @@
         <meta charset="UTF-8">
         <title>Overlay</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-        <link rel="stylesheet" href="http://aralejs.github.com/assets/base.css" />
-        <link rel="stylesheet" href="http://aralejs.github.com/assets/style.css" />
-        <link rel="stylesheet" href="http://aralejs.github.com/assets/pygments.css" />
-        <script src="https://a.alipayobjects.com/static/arale/seajs/1.2.0/sea.js"></script>
+        <link rel="stylesheet" href="http://aralejs.org/assets/base.css" />
+        <link rel="stylesheet" href="http://aralejs.org/assets/style.css" />
+        <link rel="stylesheet" href="http://aralejs.org/assets/pygments.css" />
+        <link rel="stylesheet" href="http://aralejs.org/assets/fontawesome/css/font-awesome.css" />
+        <script src="http://seajs.org/dist/sea.js"></script>
         
         
         <!--[if lt IE 9]>
-        <script type="text/javascript" src="http://aralejs.github.com/assets/html5shiv.js"></script>
+        <script type="text/javascript" src="http://aralejs.org/assets/html5shiv.js"></script>
         <![endif]-->
     </head>
     <body>
         <header id="header">
-            <h1 id="brand"><a href="http://aralejs.org/">Arale</a></h1>
-            <nav id="nav" role="navigation">
-                <a href="./">Overlay</a>
-                <a href="./examples/">Examples</a>
+            <div class="container fn-clear">
+                <a href="../dist/">Overlay</a>
+                <a href="../examples/">Examples</a>
                 
                 
-                <a id="nav-test" href="./tests/runner.html">Tests</a>
+                <a id="nav-test" target="_blank" href="../tests/runner.html">Tests</a>
                 
-            </nav>
+                <nav role="navigation" id="nav">
+                    <a class="icon-home" title="Home" href="/" id="logo">首页</a>
+                    <a class="icon-github" href="#github">源码</a>
+                    <a class="icon-group" href="#about">关于</a>
+                </nav>
+            </div>
         </header>
 
         <div id="main">
             <div class="container">
 
-<h1>Overlay</h1>
+<div class="markdown-body">
+    <h1>Overlay</h1>
 <p>基础浮层组件，提供浮层显示隐藏、dom结构自定义、定位和select遮挡等特性。</p>
 
 <hr/>
@@ -156,10 +162,10 @@ mask.show();
 <a href="https://github.com/alipay/arale/issues/new">GitHub Issue</a>
 来提交反馈。</p>
 
+</div>
 
             </div>
         </div>
         <hr class="end" />
-        <a id="github" href="https://github.com/aralejs/overlay" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:999" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     </body>
 </html>

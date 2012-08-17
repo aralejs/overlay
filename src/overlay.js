@@ -110,8 +110,10 @@ define(function(require, exports, module) {
         },
         
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
-        _blurHide: function(relativeElements) {
-            this.relativeElements = relativeElements;
+        _blurHide: function(arr) {
+            arr = arr || [];
+            arr.push(this.element);
+            this._relativeElements = arr;
             Overlay.blurOverlays.push(this);
         },
 
@@ -157,12 +159,20 @@ define(function(require, exports, module) {
 
     function hideBlurOverlays(e) {
         $(Overlay.blurOverlays).each(function(i, item) {
-            for(var i=0; i<item.relativeElements.length; i++) {
-                var el = item.relativeElements;
-                if ($.contains(el, e.target) || el === e.target) {
+            // 当元素隐藏时，不处理
+            if(!item.get('visible')) {
+                return;
+            }
+            
+            // 遍历 _relativeElements ，当点击的元素落在这些元素上时，不处理
+            for(var i=0; i<item._relativeElements.length; i++) {
+                var el = $(item._relativeElements[i])[0];
+                if (el === e.target || $.contains(el, e.target)) {
                     return;
                 }
             }
+
+            // 到这里，判断触发了元素的 blur 事件，隐藏元素
             item.hide();
         });
     }

@@ -111,24 +111,8 @@ define(function(require, exports, module) {
         
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
         _blurHide: function(relativeElements) {
-            var that = this;
-
-            var clickFn = function(e) {
-                var tempArr = [];
-                tempArr.push(that.element);
-                tempArr = tempArr.concat(relativeElements||[]);
-
-                for (var i=0; i<tempArr.length; i++) {
-                    var el = $(tempArr[i])[0];
-                    if ($.contains(el, e.target) || el === e.target) {
-                        return;
-                    } 
-                }
-                that.hide();
-            };
-            $(document).one('click', function(e) {
-                clickFn(e);
-            });
+            this.relativeElements = relativeElements;
+            Overlay.blurOverlays.push(this);
         },
 
         // 用于 set 属性后的界面更新
@@ -155,6 +139,12 @@ define(function(require, exports, module) {
 
     });
 
+    // 绑定 blur 隐藏事件
+    Overlay.blurOverlays = [];
+    $(document).on('click', function(e) {
+        hideBlurOverlays(e);
+    });
+
     module.exports = Overlay;
 
 
@@ -163,6 +153,18 @@ define(function(require, exports, module) {
 
     function isInDocument(element) {
         return $.contains(document.documentElement, element);
+    }
+
+    function hideBlurOverlays(e) {
+        $(Overlay.blurOverlays).each(function(i, item) {
+            for(var i=0; i<item.relativeElements.length; i++) {
+                var el = item.relativeElements;
+                if ($.contains(el, e.target) || el === e.target) {
+                    return;
+                }
+            }
+            item.hide();
+        });
     }
 
 });

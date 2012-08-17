@@ -1,4 +1,4 @@
-define("#overlay/0.9.9/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#position/0.9.2/position-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug"], function(require, exports, module) {
+define("#overlay/0.9.9/overlay-debug", ["$-debug", "#position/0.9.2/position-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         Position = require('#position/0.9.2/position-debug'),
@@ -110,25 +110,11 @@ define("#overlay/0.9.9/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-sh
         },
         
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
-        _blurHide: function(relativeElements) {
-            var that = this;
-
-            var clickFn = function(e) {
-                var tempArr = [];
-                tempArr.push(that.element);
-                tempArr = tempArr.concat(relativeElements||[]);
-
-                for (var i=0; i<tempArr.length; i++) {
-                    var el = $(tempArr[i])[0];
-                    if ($.contains(el, e.target) || el === e.target) {
-                        return;
-                    } 
-                }
-                that.hide();
-            };
-            $(document).one('click', function(e) {
-                clickFn(e);
-            });
+        _blurHide: function(arr) {
+            arr = arr || [];
+            arr.push(this.element);
+            this._relativeElements = arr;
+            Overlay.blurOverlays.push(this);
         },
 
         // 用于 set 属性后的界面更新
@@ -155,6 +141,12 @@ define("#overlay/0.9.9/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-sh
 
     });
 
+    // 绑定 blur 隐藏事件
+    Overlay.blurOverlays = [];
+    $(document).on('click', function(e) {
+        hideBlurOverlays(e);
+    });
+
     module.exports = Overlay;
 
 
@@ -163,6 +155,26 @@ define("#overlay/0.9.9/overlay-debug", ["$-debug", "#iframe-shim/0.9.3/iframe-sh
 
     function isInDocument(element) {
         return $.contains(document.documentElement, element);
+    }
+
+    function hideBlurOverlays(e) {
+        $(Overlay.blurOverlays).each(function(i, item) {
+            // 当元素隐藏时，不处理
+            if(!item.get('visible')) {
+                return;
+            }
+            
+            // 遍历 _relativeElements ，当点击的元素落在这些元素上时，不处理
+            for(var i=0; i<item._relativeElements.length; i++) {
+                var el = $(item._relativeElements[i])[0];
+                if (el === e.target || $.contains(el, e.target)) {
+                    return;
+                }
+            }
+
+            // 到这里，判断触发了元素的 blur 事件，隐藏元素
+            item.hide();
+        });
     }
 
 });

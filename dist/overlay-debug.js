@@ -1,9 +1,9 @@
-define("#overlay/0.9.9/overlay-debug", ["$-debug", "#position/0.9.2/position-debug", "#iframe-shim/0.9.3/iframe-shim-debug", "#widget/0.9.16/widget-debug", "#base/0.9.16/base-debug", "#events/0.9.1/events-debug", "#class/0.9.2/class-debug"], function(require, exports, module) {
+define("#overlay/0.9.9/overlay-debug", ["$-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.0/widget-debug", "#base/1.0.0/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
-        Position = require('#position/0.9.2/position-debug'),
-        Shim = require('#iframe-shim/0.9.3/iframe-shim-debug'),
-        Widget = require('#widget/0.9.16/widget-debug');
+        Position = require('#position/1.0.0/position-debug'),
+        Shim = require('#iframe-shim/1.0.0/iframe-shim-debug'),
+        Widget = require('#widget/1.0.0/widget-debug');
 
 
     // Overlay

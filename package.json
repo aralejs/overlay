@@ -3,9 +3,9 @@
     "version": "0.9.9",
     "dependencies": {
         "$":"$",
-        "widget": "widget/1.0.0/widget",
-        "position": "position/0.9.2/position",
-        "iframe-shim": "iframe-shim/0.9.3/iframe-shim"
+        "widget": "1.0.0",
+        "position": "1.0.0",
+        "iframe-shim": "1.0.0"
     },
     "output": {
         "overlay.js": ["overlay.js"],

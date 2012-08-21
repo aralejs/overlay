@@ -6,8 +6,8 @@
 <title>Overlay</title>
 <link rel="stylesheet" href="http://aralejs.org/assets/base.css">
 <link rel="stylesheet" href="http://aralejs.org/assets/style.css">
-
 <script src="http://seajs.org/dist/sea.js"></script>
+
 <script src="http://aralejs.org/tools/seajs-helper.js"></script>
 
 <!--[if lt IE 9]>
@@ -27,8 +27,8 @@
 
 
         <nav role="navigation" id="nav">
-            <a class="icon-home" title="Home" href="/" id="logo">Home</a>
-            <a class="icon-github" href="https://github.com/aralejs/overlay">Code</a>
+            <a class="icon-home" target="_blank" title="Home" href="/" id="logo">Home</a>
+            <a id="code-link" class="icon-github" target="_blank" href="https://github.com/aralejs/overlay">Code</a>
         </nav>
     </div>
 </header>
@@ -84,29 +84,6 @@
 <span class="p">});</span>
 </pre></div>
 
-<script type="text/javascript">
-seajs.use('../src/overlay', function(Overlay) {
-    var o = new Overlay({
-        template: '<div class="overlay">目标元素1</div>',
-        parentNode: '#c',
-        id: 'overlay',
-        style: {
-            color: '#fff'
-        },
-        align: {
-            selfXY: ['-100%', 0],
-            baseElement: '#a',
-            baseXY: [0, 0]
-        }
-    });
-    o.show();
-    o.set('style', {
-        backgroundColor: '#f53379'
-    });
-    o.set('width', 100);
-});
-</script>
-
 <h2>2. 全局定位浮层</h2>
 <p>目标元素2，宽80高30，位置为可视区域top:0 left:200。</p>
 
@@ -122,19 +99,6 @@ seajs.use('../src/overlay', function(Overlay) {
     <span class="nx">o2</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
 <span class="p">});</span>
 </pre></div>
-
-<script type="text/javascript">
-seajs.use('../src/overlay', function(Overlay) {
-    var o2 = new Overlay({
-        element: '#b',
-        width: 100,
-        align: {
-            baseXY: [200, 0]
-        }
-    });
-    o2.show();
-});
-</script>
 
 <h2>3. 点击文档其他地方隐藏自身</h2>
 
@@ -177,41 +141,6 @@ seajs.use('../src/overlay', function(Overlay) {
 <span class="p">});</span>
 </pre></div>
 
-<script type="text/javascript">
-seajs.use(['../src/overlay', '$'], function(Overlay, $) {
-    var testPopup = Overlay.extend({
-        attrs : {
-            trigger: null
-        },
-        setup: function() {
-            var that = this;
-            testPopup.superclass.setup.call(this);
-            this._setPosition();
-            $(this.get('trigger')).click(function() {
-                that.show();
-            });
-            this._blurHide([this.get('trigger')]); 
-        }
-    });
-    new testPopup({
-        trigger: '#d1_trigger',
-        element: '#d1',
-        align: {
-            baseElement: '#d1_trigger',
-            baseXY: ['100%', 0]
-        }
-    });
-    new testPopup({
-        trigger: '#d2_trigger',
-        element: '#d2',
-        align: {
-            baseElement: '#d2_trigger',
-            baseXY: ['100%', 0]
-        }
-    });
-});
-</script>
-
 </div>
 
     </div>
@@ -219,5 +148,8 @@ seajs.use(['../src/overlay', '$'], function(Overlay, $) {
 <hr class="end">
 <link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
 <link rel="stylesheet" href="http://aralejs.org/assets/fontawesome/css/font-awesome.css">
+<script>
+    seajs.use('http://aralejs.org/tools/nico-helper.js');
+</script>
 </body>
 </html>

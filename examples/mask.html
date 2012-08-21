@@ -6,8 +6,8 @@
 <title>Overlay</title>
 <link rel="stylesheet" href="http://aralejs.org/assets/base.css">
 <link rel="stylesheet" href="http://aralejs.org/assets/style.css">
-
 <script src="http://seajs.org/dist/sea.js"></script>
+
 <script src="http://aralejs.org/tools/seajs-helper.js"></script>
 
 <!--[if lt IE 9]>
@@ -27,8 +27,8 @@
 
 
         <nav role="navigation" id="nav">
-            <a class="icon-home" title="Home" href="/" id="logo">Home</a>
-            <a class="icon-github" href="https://github.com/aralejs/overlay">Code</a>
+            <a class="icon-home" target="_blank" title="Home" href="/" id="logo">Home</a>
+            <a id="code-link" class="icon-github" target="_blank" href="https://github.com/aralejs/overlay">Code</a>
         </nav>
     </div>
 </header>
@@ -54,14 +54,6 @@
 <span class="p">});</span>
 </pre></div>
 
-<script type="text/javascript">
-seajs.use('../src/mask', function(mask) {
-    document.getElementById('a').onclick = function() {
-        mask.show();
-    };
-});
-</script>
-
 <h2>修改遮罩层(绿色、透明度0.3)</h2>
 <p><button id="b">点击显示修改的遮罩层</button></p>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;../src/mask&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mask</span><span class="p">)</span> <span class="p">{</span>
@@ -71,14 +63,6 @@ seajs.use('../src/mask', function(mask) {
 <span class="p">});</span>
 </pre></div>
 
-<script type="text/javascript">
-seajs.use('../src/mask', function(mask) {
-    document.getElementById('b').onclick = function() {
-        mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
-    };
-});
-</script>
-
 </div>
 
     </div>
@@ -86,5 +70,8 @@ seajs.use('../src/mask', function(mask) {
 <hr class="end">
 <link rel="stylesheet" href="http://aralejs.org/assets/pygments.css">
 <link rel="stylesheet" href="http://aralejs.org/assets/fontawesome/css/font-awesome.css">
+<script>
+    seajs.use('http://aralejs.org/tools/nico-helper.js');
+</script>
 </body>
 </html>

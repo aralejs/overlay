@@ -41,14 +41,13 @@
 
   <div class="markdown-body">
     <h1>Overlay</h1>
-<p>基础浮层组件，提供浮层显示隐藏、dom结构自定义、定位和select遮挡等特性。</p>
+<p>基础浮层组件，提供浮层显示隐藏、dom 结构自定义、定位和 select 遮挡等特性。</p>
 
 <hr/>
 
 <h2>模块依赖</h2>
 
 <ul>
-<li>seajs</li>
 <li>jquery</li>
 <li>position</li>
 </ul>
@@ -157,6 +156,14 @@
 </pre></div>
 <p>改变默认配置：</p>
 <div class="highlight"><pre><span class="nx">mask</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span> <span class="nx">backgroundColor</span><span class="o">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="nx">opacity</span><span class="o">:</span><span class="mf">0.5</span> <span class="p">}).</span><span class="nx">show</span><span class="p">();</span>
+</pre></div></li>
+<li><p>点击页面空白处浮层消失的功能。</p>
+<p>这个功能常用于提示层和弹出菜单等，要使用这个特性，需要调用 overlay 的私有方法 _blurHide()。</p>
+<p>这个方法接受一个参数（元素数组），表示点击到这些元素上浮层不消失。示例如下:</p>
+<div class="highlight"><pre><span class="nx">setup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Popup</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setup</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_blurHide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;trigger&#39;</span><span class="p">));</span>
+<span class="p">},</span>
 </pre></div></li>
 </ol>
 

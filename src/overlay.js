@@ -117,8 +117,7 @@ define(function(require, exports, module) {
             $(window).resize(function() {
                 that.timeout && clearTimeout(that.timeout);
                 that.timeout = setTimeout(function() {
-                    //that._setPosition();
-                    that.set('align', that.get('align'));
+                    that._setPosition();
                 }, 100);
             });
         },

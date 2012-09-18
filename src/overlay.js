@@ -61,6 +61,8 @@ define(function(require, exports, module) {
         setup: function() {
             // 加载 iframe 遮罩层并与 overlay 保持同步
             this._setupShim();
+            // 窗口resize时，重新定位浮层
+            this._setupResize();
         },
 
         // 进行定位
@@ -107,6 +109,18 @@ define(function(require, exports, module) {
                     this.on('change:' + attr, shim.sync, shim);
                 }
             }
+        },
+
+        // resize窗口时重新定位浮层
+        _setupResize: function() {
+            var that = this;
+            $(window).resize(function() {
+                that.timeout && clearTimeout(that.timeout);
+                that.timeout = setTimeout(function() {
+                    //that._setPosition();
+                    that.set('align', that.get('align'));
+                }, 100);
+            });
         },
         
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element

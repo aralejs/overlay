@@ -61,7 +61,7 @@
 </style>
 
 <h2>1. 基本浮层</h2>
-<p>目标元素1定位在基准元素1的右边，高宽分别为30，底色红色。</p>
+<p>目标元素1定位在基准元素1的右边，高宽分别为30/100，底色红色。</p>
 
 <div id="c"></div>
 <div id="a" class="example">基准元素1</div>
@@ -85,7 +85,7 @@ seajs.use('overlay', function(Overlay) {
     o.set('style', {
         backgroundColor: '#f53379'
     });
-    o.set('width', 100);
+    o.set('height', 40);
 });
 </script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;overlay&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">)</span> <span class="p">{</span>
@@ -106,7 +106,7 @@ seajs.use('overlay', function(Overlay) {
     <span class="nx">o</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="p">{</span>
         <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;#f53379&#39;</span>
     <span class="p">});</span>
-    <span class="nx">o</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="nx">o</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 

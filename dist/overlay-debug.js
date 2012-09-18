@@ -117,8 +117,7 @@ define("#overlay/0.9.10/overlay-debug", ["$-debug", "#position/1.0.0/position-de
             $(window).resize(function() {
                 that.timeout && clearTimeout(that.timeout);
                 that.timeout = setTimeout(function() {
-                    //that._setPosition();
-                    that.set('align', that.get('align'));
+                    that._setPosition();
                 }, 100);
             });
         },

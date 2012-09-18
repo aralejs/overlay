@@ -111,15 +111,9 @@ define(function(require, exports, module) {
             }
         },
 
-        // resize窗口时重新定位浮层
+        // resize窗口时重新定位浮层，用这个方法收集所有浮层实例
         _setupResize: function() {
-            var that = this;
-            $(window).resize(function() {
-                that.timeout && clearTimeout(that.timeout);
-                that.timeout = setTimeout(function() {
-                    that._setPosition();
-                }, 100);
-            });
+            Overlay.allOverlays.push(this);
         },
         
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
@@ -158,6 +152,22 @@ define(function(require, exports, module) {
     Overlay.blurOverlays = [];
     $(document).on('click', function(e) {
         hideBlurOverlays(e);
+    });
+
+    // 绑定 resize 重新定位事件
+    var timeout;    
+    Overlay.allOverlays = [];
+    $(window).resize(function() {
+        timeout && clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            $(Overlay.allOverlays).each(function(i, item) {
+                // 当元素隐藏时，不处理
+                if(!item.get('visible')) {
+                    return;
+                }
+                item._setPosition();
+            });
+        }, 80);
     });
 
     module.exports = Overlay;

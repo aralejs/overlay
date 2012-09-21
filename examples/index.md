@@ -12,7 +12,7 @@
 
 ## 1. 基本浮层
 
-目标元素1定位在基准元素1的右边，高宽分别为30，底色红色。
+目标元素1定位在基准元素1的右边，高宽分别为30/100，底色红色。
 
 <div id="c"></div>
 <div id="a" class="example">基准元素1</div>
@@ -36,7 +36,7 @@ seajs.use('overlay', function(Overlay) {
     o.set('style', {
         backgroundColor: '#f53379'
     });
-    o.set('width', 100);
+    o.set('height', 40);
 });
 ````
 ## 2. 全局定位浮层

@@ -1,14 +1,13 @@
 
 # Overlay
 
-基础浮层组件，提供浮层显示隐藏、dom结构自定义、定位和select遮挡等特性。
+基础浮层组件，提供浮层显示隐藏、dom 结构自定义、定位和 select 遮挡等特性。
 
 ---
 
 
 ## 模块依赖
 
- - seajs
  - jquery
  - position
 
@@ -62,8 +61,6 @@
         baseXY: [0, 0]      // 基准定位元素的定位点，默认为左上角
     }
     ```
-
-
 
 
 ## 方法说明
@@ -159,6 +156,18 @@
     mask.set({ backgroundColor:'red', opacity:0.5 }).show();
     ```
 
+4. 点击页面空白处浮层消失的功能。
+
+    这个功能常用于提示层和弹出菜单等，要使用这个特性，需要调用 overlay 的私有方法 _blurHide()。
+
+    这个方法接受一个参数（元素数组），表示点击到这些元素上浮层不消失。示例如下:
+
+    ```js
+    setup: function() {
+        Popup.superclass.setup.call(this);
+        this._blurHide(this.get('trigger'));
+    },
+    ```
 
 ## 交流讨论
 

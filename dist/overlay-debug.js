@@ -1,9 +1,9 @@
-define("#overlay/0.9.9/overlay-debug", ["$-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.0/widget-debug", "#base/1.0.0/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
+define("#overlay/0.9.10/overlay-debug", ["$-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "position/1.0.0/position-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         Position = require('#position/1.0.0/position-debug'),
         Shim = require('#iframe-shim/1.0.0/iframe-shim-debug'),
-        Widget = require('#widget/1.0.0/widget-debug');
+        Widget = require('#widget/1.0.2/widget-debug');
 
 
     // Overlay
@@ -61,6 +61,8 @@ define("#overlay/0.9.9/overlay-debug", ["$-debug", "#position/1.0.0/position-deb
         setup: function() {
             // 加载 iframe 遮罩层并与 overlay 保持同步
             this._setupShim();
+            // 窗口resize时，重新定位浮层
+            this._setupResize();
         },
 
         // 进行定位
@@ -108,6 +110,11 @@ define("#overlay/0.9.9/overlay-debug", ["$-debug", "#position/1.0.0/position-deb
                 }
             }
         },
+
+        // resize窗口时重新定位浮层，用这个方法收集所有浮层实例
+        _setupResize: function() {
+            Overlay.allOverlays.push(this);
+        },
         
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
         _blurHide: function(arr) {
@@ -145,6 +152,22 @@ define("#overlay/0.9.9/overlay-debug", ["$-debug", "#position/1.0.0/position-deb
     Overlay.blurOverlays = [];
     $(document).on('click', function(e) {
         hideBlurOverlays(e);
+    });
+
+    // 绑定 resize 重新定位事件
+    var timeout;    
+    Overlay.allOverlays = [];
+    $(window).resize(function() {
+        timeout && clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            $(Overlay.allOverlays).each(function(i, item) {
+                // 当元素隐藏时，不处理
+                if(!item.get('visible')) {
+                    return;
+                }
+                item._setPosition();
+            });
+        }, 80);
     });
 
     module.exports = Overlay;

@@ -38,6 +38,11 @@ define(function(require, exports, module) {
             return Mask.superclass.show.call(this);
         },
 
+        setup: function() {
+            // 加载 iframe 遮罩层并与 overlay 保持同步
+            this._setupShim();
+        },
+
         _onRenderBackgroundColor: function(val) {
             this.element.css('backgroundColor', val);
         },

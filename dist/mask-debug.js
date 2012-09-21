@@ -1,4 +1,4 @@
-define("#overlay/0.9.9/mask-debug", ["./overlay-debug", "$-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.0/widget-debug", "#base/1.0.0/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
+define("#overlay/0.9.10/mask-debug", ["./overlay-debug", "$-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "position/1.0.0/position-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         Overlay = require('./overlay-debug'),
@@ -36,6 +36,11 @@ define("#overlay/0.9.9/mask-debug", ["./overlay-debug", "$-debug", "#position/1.
                 this.set('height', doc.outerHeight(true));
             }
             return Mask.superclass.show.call(this);
+        },
+
+        setup: function() {
+            // 加载 iframe 遮罩层并与 overlay 保持同步
+            this._setupShim();
         },
 
         _onRenderBackgroundColor: function(val) {

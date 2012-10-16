@@ -1,6 +1,7 @@
 {
     "name": "overlay",
     "version": "0.9.11",
+    "tag": "widget",
     "dependencies": {
         "$":"$",
         "widget": "1.0.2",

@@ -4,11 +4,7 @@ define(function(require, exports, module) {
         Overlay = require('./overlay'),
         isIE6 = ($.browser || 0).msie && $.browser.version == 6.0,
         body = $(document.body),
-        doc = $(document),
-        defaultStyle = {
-            opacity: .2,
-            backgroundColor: '#000',
-        };
+        doc = $(document);
 
 
     // Mask
@@ -23,9 +19,14 @@ define(function(require, exports, module) {
 
             className: 'ui-mask',
 
-            style: $.extend({
+            defaultStyle: {
+                opacity: .2,
+                backgroundColor: '#000',
+            },
+
+            style: {
                 position: isIE6 ? 'absolute' : 'fixed'
-            }, defaultStyle),
+            },
 
             align: {
                 // undefined 表示相对于当前可视范围定位
@@ -40,7 +41,7 @@ define(function(require, exports, module) {
             }
 
             // 如果有指定样式，设置成指定样式，否则还原成默认样式
-            this.set(style || defaultStyle);
+            this.set(style || this.get('defaultStyle'));
 
             return Mask.superclass.show.call(this);
         },
@@ -56,6 +57,10 @@ define(function(require, exports, module) {
 
         _onRenderOpacity: function(val) {
             this.element.css('opacity', val);
+        },
+
+        _onRenderDefaultStyle: function(val){
+            this.set(val);
         }
     });
 

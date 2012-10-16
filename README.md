@@ -1,18 +1,8 @@
-
 # Overlay
-
-基础浮层组件，提供浮层显示隐藏、dom 结构自定义、定位和 select 遮挡等特性。
 
 ---
 
-
-## 模块依赖
-
- - jquery
- - position
-
-
-## 配置说明
+## API
 
 * `element` {element} 
 
@@ -169,8 +159,3 @@
     },
     ```
 
-## 交流讨论
-
-欢迎创建
-[GitHub Issue](https://github.com/alipay/arale/issues/new)
-来提交反馈。

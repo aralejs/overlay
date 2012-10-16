@@ -18,9 +18,13 @@ define(function(require, exports, module) {
             height: isIE6 ? doc.outerHeight(true) : '100%',
 
             className: 'ui-mask',
-            style: {
+
+            defaultStyle: {
                 opacity: .2,
                 backgroundColor: '#000',
+            },
+
+            style: {
                 position: isIE6 ? 'absolute' : 'fixed'
             },
 
@@ -30,11 +34,15 @@ define(function(require, exports, module) {
             }
         },
 
-        show: function() {
+        show: function(style) {
             if (isIE6) {
                 this.set('width', doc.outerWidth(true));
                 this.set('height', doc.outerHeight(true));
             }
+
+            // 如果有指定样式，设置成指定样式，否则还原成默认样式
+            this.set(style || this.get('defaultStyle'));
+
             return Mask.superclass.show.call(this);
         },
 
@@ -49,6 +57,10 @@ define(function(require, exports, module) {
 
         _onRenderOpacity: function(val) {
             this.element.css('opacity', val);
+        },
+
+        _onRenderDefaultStyle: function(val){
+            this.set(val);
         }
     });
 

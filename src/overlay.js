@@ -47,9 +47,12 @@ define(function(require, exports, module) {
             // 若从未渲染，则调用 render
             if (!this.rendered) {
                 this.render();
+                this.set('visible', true);
             }
-
-            this.set('visible', true);
+            else {
+                this.set('visible', true);
+                this._setPosition();
+            }
             return this;
         },
 

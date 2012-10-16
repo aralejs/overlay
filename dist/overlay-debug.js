@@ -1,4 +1,4 @@
-define("#overlay/0.9.10/overlay-debug", ["$-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
+define("#overlay/0.9.11/overlay-debug", ["$-debug", "#position/1.0.0/position-debug", "#iframe-shim/1.0.0/iframe-shim-debug", "#widget/1.0.2/widget-debug", "#base/1.0.1/base-debug", "#class/1.0.0/class-debug", "#events/1.0.0/events-debug"], function(require, exports, module) {
 
     var $ = require('$-debug'),
         Position = require('#position/1.0.0/position-debug'),
@@ -47,9 +47,12 @@ define("#overlay/0.9.10/overlay-debug", ["$-debug", "#position/1.0.0/position-de
             // 若从未渲染，则调用 render
             if (!this.rendered) {
                 this.render();
+                this.set('visible', true);
             }
-
-            this.set('visible', true);
+            else {
+                this.set('visible', true);
+                this._setPosition();
+            }
             return this;
         },
 

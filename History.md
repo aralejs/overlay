@@ -1,5 +1,9 @@
 # Overlay
 
+### 0.9.11
+
+* [`featrue`] 显示时进行浮层定位（将popup的功能提到overlay中）
+
 ### 0.9.10
 
 * [`featrue`] 增加resize时重新定位浮层功能

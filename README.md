@@ -4,7 +4,7 @@
 
 ## API
 
-* `element` *element* 
+* `element` {element} 
 
     页面dom节点，只读。
 

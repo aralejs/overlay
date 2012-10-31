@@ -1,7 +1,7 @@
 {
     "name": "overlay",
     "version": "0.9.11",
-    "description": "基础浮层组件，提供浮层显示隐藏、定位、resize窗口重新定位和 select 遮挡等特性。",
+    "description": "基础浮层组件，提供浮层显示隐藏、定位和 select 遮挡等特性。",
     "tag": "widget",
     "dependencies": {
         "$":"$",

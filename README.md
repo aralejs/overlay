@@ -10,7 +10,7 @@
 
 * `template` {string}
 
-    浮层容器的模板，如'\<div class="myoverlay">\</div>'，只读。
+    浮层容器的模板，如`<div class="myoverlay"></div>`，只读。
 
 * `zIndex` {string|number}
 

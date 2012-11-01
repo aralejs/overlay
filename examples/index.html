@@ -3,10 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-    <title>Overlay - 基本浮层及其定位</title><link rel="stylesheet" href="http://alipay.github.com/liquidluck-theme-arale/assets/app.min.css">
+    <title>Overlay - 基本浮层及其定位</title>
+    <link rel="stylesheet" href="/theme/base.css">
+    <link rel="stylesheet" href="/theme/style.css">
+    <link rel="stylesheet" href="/theme/arale-reset.css">
+    <link rel="stylesheet" href="/theme/pygments.css">
     <link rel="shortcut icon" href="http://alipay.github.com/liquidluck-theme-arale/assets/favicon.ico" type="image/x-icon" />
-    <script src="http://seajs.org/dist/sea.js"></script>
-    <script src="http://alipay.github.com/liquidluck-theme-arale/tools/arale-helper.js"></script>
+    <script src="https://a.alipayobjects.com/static/arale/seajs/1.2.1/sea.js"></script>
+    <script>
+        nicoDebug = true;
+    </script>
+    <script src="/theme/arale-helper.js"></script>
     <!--[if lt IE 9]>
       <script src="http://alipay.github.com/liquidluck-theme-arale/assets/html5shiv.js"></script>
     <![endif]-->
@@ -57,7 +64,7 @@
 <div id="a" class="example">基准元素1</div>
 
 <script>
-seajs.use('overlay', function(Overlay) {
+seajs.use('../src/overlay', function(Overlay) {
     var o = new Overlay({
         template: '<div class="overlay">目标元素1</div>',
         parentNode: '#c',
@@ -78,7 +85,7 @@ seajs.use('overlay', function(Overlay) {
     o.set('height', 40);
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;overlay&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;../src/overlay&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Overlay</span><span class="p">({</span>
         <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div class=&quot;overlay&quot;&gt;目标元素1&lt;/div&gt;&#39;</span><span class="p">,</span>
         <span class="nx">parentNode</span><span class="o">:</span> <span class="s1">&#39;#c&#39;</span><span class="p">,</span>
@@ -106,7 +113,7 @@ seajs.use('overlay', function(Overlay) {
 <div id="b" class="example">目标元素2</div>
 
 <script>
-seajs.use('overlay', function(Overlay) {
+seajs.use('../src/overlay', function(Overlay) {
     var o2 = new Overlay({
         element: '#b',
         width: 100,
@@ -117,7 +124,7 @@ seajs.use('overlay', function(Overlay) {
     o2.show();
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;overlay&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;../src/overlay&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Overlay</span><span class="p">({</span>
         <span class="nx">element</span><span class="o">:</span> <span class="s1">&#39;#b&#39;</span><span class="p">,</span>
         <span class="nx">width</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
@@ -138,7 +145,7 @@ seajs.use('overlay', function(Overlay) {
 <div id="d2" class="example" style="display:none;">目标元素4，点击页面空白处我会消失</div>
 
 <script>
-seajs.use(['overlay', '$'], function(Overlay, $) {
+seajs.use(['../src/overlay', '$'], function(Overlay, $) {
     var testPopup = Overlay.extend({
         attrs : {
             trigger: null
@@ -171,7 +178,7 @@ seajs.use(['overlay', '$'], function(Overlay, $) {
     });
 });
 </script>
-<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;overlay&#39;</span><span class="p">,</span> <span class="s1">&#39;$&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;../src/overlay&#39;</span><span class="p">,</span> <span class="s1">&#39;$&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Overlay</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">testPopup</span> <span class="o">=</span> <span class="nx">Overlay</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
         <span class="nx">attrs</span> <span class="o">:</span> <span class="p">{</span>
             <span class="nx">trigger</span><span class="o">:</span> <span class="kc">null</span>

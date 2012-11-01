@@ -3,10 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-    <title>Overlay - 全局遮罩Mask组件示例</title><link rel="stylesheet" href="http://alipay.github.com/liquidluck-theme-arale/assets/app.min.css">
+    <title>Overlay - 全局遮罩Mask组件示例</title>
+    <link rel="stylesheet" href="/theme/base.css">
+    <link rel="stylesheet" href="/theme/style.css">
+    <link rel="stylesheet" href="/theme/arale-reset.css">
+    <link rel="stylesheet" href="/theme/pygments.css">
     <link rel="shortcut icon" href="http://alipay.github.com/liquidluck-theme-arale/assets/favicon.ico" type="image/x-icon" />
-    <script src="http://seajs.org/dist/sea.js"></script>
-    <script src="http://alipay.github.com/liquidluck-theme-arale/tools/arale-helper.js"></script>
+    <script src="https://a.alipayobjects.com/static/arale/seajs/1.2.1/sea.js"></script>
+    <script>
+        nicoDebug = true;
+    </script>
+    <script src="/theme/arale-helper.js"></script>
     <!--[if lt IE 9]>
       <script src="http://alipay.github.com/liquidluck-theme-arale/assets/html5shiv.js"></script>
     <![endif]-->
@@ -40,6 +47,14 @@
   <h1 class="entry-title"><a id="back-to-module" href="../">Overlay</a> - 全局遮罩Mask组件示例</h1>
   <h2 id="toc_0">默认遮罩层</h2>
 <p><button id="a">点击显示默认遮罩层</button></p>
+
+<script>
+seajs.use('../src/mask', function(mask) {
+    document.getElementById('a').onclick = function() {
+        mask.show();
+    };
+});
+</script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;../src/mask&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mask</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">mask</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
@@ -49,6 +64,14 @@
 
 <h2 id="toc_1">修改遮罩层(绿色、透明度0.3)</h2>
 <p><button id="b">点击显示修改的遮罩层</button></p>
+
+<script>
+seajs.use('../src/mask', function(mask) {
+    document.getElementById('b').onclick = function() {
+        mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
+    };
+});
+</script>
 <div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;../src/mask&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mask</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">mask</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="s1">&#39;0.3&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>

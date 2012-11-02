@@ -34,25 +34,13 @@ define(function(require, exports, module) {
             parentNode: document.body
         },
 
-        render: function() {
-            // 让用户传入的 config 生效并插入到文档流中
-            Overlay.superclass.render.call(this);
-
-            // 在插入到文档流后，重新定位一次
-            this._setPosition();
-            return this;
-        },
-
         show: function() {
             // 若从未渲染，则调用 render
             if (!this.rendered) {
                 this.render();
-                this.set('visible', true);
             }
-            else {
-                this.set('visible', true);
-                this._setPosition();
-            }
+            this.set('visible', true);
+            this._setPosition();
             return this;
         },
 

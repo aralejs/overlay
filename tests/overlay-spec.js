@@ -28,7 +28,8 @@ define(function(require) {
                     baseElement: document.body,
                     baseXY: [100, 100]
                 } 
-            }).render();
+            });
+            overlay.render();
         });
 
         afterEach(function() {
@@ -41,7 +42,7 @@ define(function(require) {
             expect(overlay.element.hasClass('ui-overlay')).toBe(true);
             expect(overlay.element.css('width')).toBe('120px');
             expect(overlay.element.css('height')).toBe('110px');
-            expect(parseInt(overlay.element.css('z-index'))).toBe(90);
+            expect(parseInt(overlay.element[0].style.zIndex)).toBe(90);
             expect(overlay.get('visible')).toBe(false);
             if(ie678) {
                 expect(overlay.element.css('color')).toBe('#e80');
@@ -68,7 +69,7 @@ define(function(require) {
             expect(overlay.element[0].id).toBe('');
             expect(overlay.element[0].className).toBe('');
             expect(overlay.element.width()).toBe(0);
-            expect(parseInt(overlay.element.css('z-index'))).toBe(99);
+            expect(parseInt(overlay.element[0].style.zIndex)).toBe(99);
             expect(overlay.get('visible')).toBe(false);
             expect(overlay.get('style')).toEqual({});
             
@@ -92,7 +93,7 @@ define(function(require) {
 
             expect(overlay.element.css('width')).toBe('300px');
             expect(overlay.element.css('height')).toBe('400px');
-            expect(parseInt(overlay.element.css('z-index'))).toBe(101);   
+            expect(parseInt(overlay.element[0].style.zIndex)).toBe(101);   
             if(ie678) {
                 expect(overlay.element.css('background-color')).toBe('red');
             }

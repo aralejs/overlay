@@ -116,22 +116,16 @@
         attrs: {
             trigger: null,
             triggerType: 'click',
-            comfirmElement: null,
-            cancelElement: null,
-            closeElement: null,
             hasMask: false,
             onComfirm: function() {},
             onClose: function() {}
         },
-        setup: function() {
-            
-        },
-        parseElement: function() {
-            
+        setup: function() {},
+        show: function() {
+            Dialog.superclass.show.call(this);
+            // add sth.
         }
-        delegateEvents: function() {
-            
-        }
+        delegateEvents: function() {}
     });
     ```
 

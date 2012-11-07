@@ -3,6 +3,15 @@
     "version": "0.9.12",
     "description": "基础浮层组件，提供浮层显示隐藏、定位和 select 遮挡等特性。",
     "tag": "widget",
+    "author": "afc163 <afc163@gmail.com>",
+    "homepage": "http://aralejs.org/overlay",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aralejs/overlay"
+    },
+    "bugs": {
+        "url": "https://github.com/aralejs/overlay/issues"
+    },
     "dependencies": {
         "$":"$",
         "widget": "1.0.2",

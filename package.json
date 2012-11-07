@@ -1,6 +1,7 @@
 {
     "name": "overlay",
     "version": "0.9.12",
+    "root": "arale",
     "description": "基础浮层组件，提供浮层显示隐藏、定位和 select 遮挡等特性。",
     "tag": "widget",
     "author": "afc163 <afc163@gmail.com>",
@@ -14,9 +15,9 @@
     },
     "dependencies": {
         "$":"$",
-        "widget": "1.0.2",
-        "position": "1.0.0",
-        "iframe-shim": "1.0.0"
+        "widget": "arale/widget/1.0.2/widget",
+        "position": "arale/position/1.0.0/position",
+        "iframe-shim": "arale/iframe-shim/1.0.0/iframe-shim"
     },
     "output": {
         "overlay.js": ["overlay.js"],

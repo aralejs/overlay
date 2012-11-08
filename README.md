@@ -8,43 +8,43 @@
 
 ## 配置说明
 
-### element *element* 
+### element `element`
 
-页面dom节点，只读。
+页面 dom 节点，只读。
 
-### template *string*
+### template `string`
 
 浮层容器的模板，如`<div class="myoverlay"></div>`，只读。
 
-### zIndex *string|number*
+### zIndex `string|number`
 
-浮层的z-index属性。
+浮层的 z-index 属性。
 
-### width *string|number*
+### width `string|number`
 
 浮层宽度(px)。
 
-### height *string|number*
+### height `string|number`
 
 浮层高度(px)。
 
-### id *string*
+### id `string`
 
 浮层的初始化 id 。
 
-### className *string*
+### className `string`
 
 浮层的初始化 className 。
 
-### style *object*
+### style `object`
 
 浮层的初始化 style 对象。
 
-### parentNode *element*
+### parentNode `element`
 
 浮层的父元素，默认为document.body，只读。
 
-### align *object*
+### align `object`
 
 定位对象，形似下面代码。这块的定位原理可参照`arale.position`组件的 *pin* 方法。
 

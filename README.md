@@ -6,77 +6,77 @@
 
 ---
 
-## API
+## 配置说明
 
-* `element` {element} 
+### element *element* 
 
-    页面dom节点，只读。
+页面dom节点，只读。
 
-* `template` {string}
+### template *string*
 
-    浮层容器的模板，如`<div class="myoverlay"></div>`，只读。
+浮层容器的模板，如`<div class="myoverlay"></div>`，只读。
 
-* `zIndex` {string|number}
+### zIndex *string|number*
 
-    浮层的z-index属性。
+浮层的z-index属性。
 
-* `width` {string|number}
+### width *string|number*
 
-    浮层宽度(px)。
+浮层宽度(px)。
 
-* `height` {string|number}
+### height *string|number*
 
-    浮层高度(px)。
+浮层高度(px)。
 
-* `id` {string}
+### id *string*
 
-    浮层的初始化 id 。
+浮层的初始化 id 。
 
-* `className` {string}
+### className *string*
 
-    浮层的初始化 className 。
+浮层的初始化 className 。
 
-* `style` {object}
+### style *object*
 
-    浮层的初始化 style 对象。
+浮层的初始化 style 对象。
 
-* `parentNode` {element}
+### parentNode *element*
 
-    浮层的父元素，默认为document.body，只读。
+浮层的父元素，默认为document.body，只读。
 
-* `align` {object}
+### align *object*
 
-    定位对象，形似下面代码。这块的定位原理可参照arale.position组件的pin方法。
+定位对象，形似下面代码。这块的定位原理可参照`arale.position`组件的 *pin* 方法。
 
-    ```js
-    {
-        selfXY: [0, 0],     // element 的定位点，默认为左上角
-        baseElement: Position.VIEWPORT,     // 基准定位元素，默认为当前可视区域
-        baseXY: [0, 0]      // 基准定位元素的定位点，默认为左上角
-    }
-    ```
+```js
+{
+    selfXY: [0, 0],     // element 的定位点，默认为左上角
+    baseElement: Position.VIEWPORT,     // 基准定位元素，默认为当前可视区域
+    baseXY: [0, 0]      // 基准定位元素的定位点，默认为左上角
+}
+```
 
 ## 方法说明
 
-* `render()` 
+### render()
 
-    生成浮层的dom结构和样式并插入文档流。
+生成浮层的dom结构和样式并插入文档流。
 
-* `show()` 
+### show()
 
-    显示浮层，第一次调用时会进行render()操作。
+显示浮层，第一次调用时会进行render()操作。
 
-* `hide()` 
+### hide()
 
-    隐藏浮层。
+隐藏浮层。
 
-* `get(key)` 
+### get(key)
 
-    获得属性值。
+获得属性值。
 
-* `set(key, value)` 
+### set(key, value)
 
-    非只读属性都可以通过set方法修改，并会立刻反映到浮层上。API 里的所有属性都可以修改。
+非只读属性都可以通过set方法修改，并会立刻反映到浮层上。API 里的所有属性都可以修改。
 
 
 ## 最佳实践

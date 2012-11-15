@@ -13,6 +13,13 @@ seajs.use('../src/mask', function(mask) {
     document.getElementById('a').onclick = function() {
         mask.show();
     };
+    document.onkeyup = function(e) {
+        e = e || window.event;
+        // keyboard esc
+        if (e.keyCode === 27) {
+            mask.hide();
+        }
+    }
 });
 ````
 

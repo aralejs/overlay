@@ -18,9 +18,9 @@ define(function(require, exports, module) {
             height: isIE6 ? doc.outerHeight(true) : '100%',
 
             className: 'ui-mask',
+            opacity: .2,
+            backgroundColor: '#000',
             style: {
-                opacity: .2,
-                backgroundColor: '#000',
                 position: isIE6 ? 'absolute' : 'fixed'
             },
 

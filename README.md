@@ -152,7 +152,7 @@
     ```js
     setup: function() {
         Popup.superclass.setup.call(this);
-        this._blurHide(this.get('trigger'));
+        this._blurHide([this.get('trigger')]);
     },
     ```
 

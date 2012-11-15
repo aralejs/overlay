@@ -9,17 +9,16 @@
 <button id="a">点击显示默认遮罩层</button>
 
 ````javascript
-seajs.use('../src/mask', function(mask) {
-    document.getElementById('a').onclick = function() {
+seajs.use(['jquery', 'mask'], function($, mask) {
+    $('#a').click(function() {
         mask.show();
-    };
-    document.onkeyup = function(e) {
-        e = e || window.event;
+    });
+    $(document).keyup(function(e) {
         // keyboard esc
         if (e.keyCode === 27) {
             mask.hide();
         }
-    }
+    });
 });
 ````
 
@@ -28,11 +27,9 @@ seajs.use('../src/mask', function(mask) {
 <button id="b">点击显示修改的遮罩层</button>
 
 ````javascript
-seajs.use('../src/mask', function(mask) {
-    document.getElementById('b').onclick = function() {
+seajs.use(['jquery', 'mask'], function($, mask) {
+    $('#b').click(function() {
         mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
-    };
+    });
 });
 ````
-
-

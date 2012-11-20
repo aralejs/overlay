@@ -113,7 +113,7 @@
 
 2. 继承使用：
 
-继承使用时，如果需要覆盖父类的 setup、show、hide 方法，强烈建议这样`Dialog.superclass.show.call(this);`调用一下父类的方法，否则可能造成一些特性的丢失。
+    继承使用时，如果需要覆盖父类的 setup、show、hide 方法，强烈建议这样`Dialog.superclass.show.call(this);`调用一下父类的方法，否则可能造成一些特性的丢失。
 
     ```js
     var Overlay = require('overlay');

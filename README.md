@@ -125,12 +125,13 @@
             onComfirm: function() {},
             onClose: function() {}
         },
-        setup: function() {},
+        setup: function() {
+            Dialog.superclass.setup.call(this);            
+        },
         show: function() {
             Dialog.superclass.show.call(this);
             // add sth.
         }
-        delegateEvents: function() {}
     });
     ```
 

@@ -20,8 +20,8 @@
         "iframe-shim": "arale/iframe-shim/1.0.0/iframe-shim"
     },
     "output": {
-        "overlay.js": ["overlay.js"],
-        "mask.js": ["mask.js"]
+        "overlay.js": ["./overlay.js"],
+        "mask.js": ["./mask.js"]
     },
     "tests": ["overlay"]
 }

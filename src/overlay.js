@@ -109,7 +109,7 @@ define(function(require, exports, module) {
         
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
         _blurHide: function(arr) {
-            arr = arr || [];
+            arr = $.makeArray(arr);
             arr.push(this.element);
             this._relativeElements = arr;
             Overlay.blurOverlays.push(this);

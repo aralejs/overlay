@@ -85,7 +85,7 @@ seajs.use(['../src/overlay', '$'], function(Overlay, $) {
             $(this.get('trigger')).click(function() {
                 that.show();
             });
-            this._blurHide([this.get('trigger')]); 
+            this._blurHide(this.get('trigger')); 
         }
     });
     new testPopup({

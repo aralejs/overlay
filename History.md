@@ -6,7 +6,7 @@
 
 `tag:fixed` 修复了 mask 组件 set 方法有时失效的问题。
 
-`tag:fixed` 修复了 _bulrHide() 只支持数组对象的问题。
+`tag:fixed` 修复了 _blurHide() 只支持数组对象的问题。
 
 ## 0.9.12
 

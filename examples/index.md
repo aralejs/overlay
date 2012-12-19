@@ -64,7 +64,7 @@ seajs.use('overlay', function(Overlay) {
 });
 ````
 
-## 3. 点击文档其他地方隐藏自身
+## 3. 点击文档其他地方隐藏自身（被动特性）
 
 <div id="d1_trigger" style="width:150px;height:30px;background:#ccc;">点击我显隐元素3</div>
 <div id="d1" class="example" style="display:none;">目标元素3，点击页面空白处我会消失</div>
@@ -106,3 +106,8 @@ seajs.use(['overlay', '$'], function(Overlay, $) {
     });
 });
 ````
+
+
+## 4. 窗口大小变化时重新定位（被动特性）
+
+请改变本窗口的大小并观察一下目标元素1、2的位置。

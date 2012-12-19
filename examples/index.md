@@ -64,7 +64,7 @@ seajs.use('overlay', function(Overlay) {
 });
 ````
 
-## 3. 点击文档其他地方隐藏自身（被动特性）
+## 3. 点击文档其他地方隐藏自身 `this._blurHide()`
 
 <div id="d1_trigger" style="width:150px;height:30px;background:#ccc;">点击我显隐元素3</div>
 <div id="d1" class="example" style="display:none;">目标元素3，点击页面空白处我会消失</div>
@@ -85,6 +85,7 @@ seajs.use(['overlay', '$'], function(Overlay, $) {
             $(this.get('trigger')).click(function() {
                 that.show();
             });
+            // 需要调用这句话来实现功能
             this._blurHide(this.get('trigger')); 
         }
     });

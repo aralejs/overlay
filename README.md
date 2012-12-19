@@ -7,6 +7,8 @@
 
 基础浮层组件，提供浮层显示隐藏、定位和 IE6 下 select 遮挡、窗口 resize 时重新定位、点击页面空白处浮层消失等等特性，是所有浮层类组件的基类。
 
+<span style="font-size:120px;line-height:0.4;color:rgb(167, 159, 126);">❏</span>
+
 ---
 
 ## 配置说明
@@ -17,7 +19,7 @@
 
 ### template `string`
 
-浮层容器的模板，如`<div class="myoverlay"></div>`，只读。
+浮层容器的模板，如`<div class="myoverlay"></div>`，只读。和 `element` 属性二者择一即可。
 
 ### zIndex `string|number`
 

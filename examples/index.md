@@ -24,11 +24,11 @@
 <div id="a" class="example">基准元素1</div>
 
 ````javascript
-seajs.use('../src/overlay', function(Overlay) {
+seajs.use('overlay', function(Overlay) {
     var o = new Overlay({
-        template: '<div class="overlay">目标元素1</div>',
+        template: "<div class='overlay'>目标元素1</div>",
         parentNode: '#c',
-        id: 'overlay',
+        id: 'myoverlay',
         style: {
             color: '#fff'
         },
@@ -52,7 +52,7 @@ seajs.use('../src/overlay', function(Overlay) {
 <div id="b" class="example">目标元素2</div>
 
 ````javascript
-seajs.use('../src/overlay', function(Overlay) {
+seajs.use('overlay', function(Overlay) {
     var o2 = new Overlay({
         element: '#b',
         width: 100,
@@ -73,7 +73,7 @@ seajs.use('../src/overlay', function(Overlay) {
 <div id="d2" class="example" style="display:none;">目标元素4，点击页面空白处我会消失</div>
 
 ````javascript
-seajs.use(['../src/overlay', '$'], function(Overlay, $) {
+seajs.use(['overlay', '$'], function(Overlay, $) {
     var testPopup = Overlay.extend({
         attrs : {
             trigger: null

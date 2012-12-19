@@ -9,7 +9,7 @@
 <button id="a">点击显示默认遮罩层</button>
 
 ````javascript
-seajs.use(['jquery', 'mask'], function($, mask) {
+seajs.use(['$', 'mask'], function($, mask) {
     $('#a').click(function() {
         mask.show();
     });
@@ -27,7 +27,7 @@ seajs.use(['jquery', 'mask'], function($, mask) {
 <button id="b">点击显示修改的遮罩层</button>
 
 ````javascript
-seajs.use(['jquery', 'mask'], function($, mask) {
+seajs.use(['$', 'mask'], function($, mask) {
     $('#b').click(function() {
         mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
     });

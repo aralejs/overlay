@@ -7,6 +7,8 @@
 
 基础浮层组件，提供浮层显示隐藏、定位和 IE6 下 select 遮挡、窗口 resize 时重新定位、点击页面空白处浮层消失等等特性，是所有浮层类组件的基类。
 
+如果你开发一个浮层类的 UI 组件，可以基于它进行扩展，dialog、autocomplete、popup、select 组件均继承了 Overlay 。
+
 <span style="font-size:120px;line-height:0.4;color:rgb(167, 159, 126);">❏</span>
 
 ---

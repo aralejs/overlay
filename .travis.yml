@@ -16,4 +16,3 @@ before_script:
   - nohup node tests/test-travis.js &
 
 script: ./node_modules/.bin/mocha-phantomjs --timeout=10000 http://127.0.0.1:8000/tests/runner.html
-

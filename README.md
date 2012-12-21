@@ -9,7 +9,7 @@
 
 如果要开发一个浮层类的 UI 组件，可以基于它进行扩展，dialog、autocomplete、popup、select、calendar 等模块均继承了 Overlay 。
 
-<span style="font-size:120px;line-height:0.4;color:rgb(167, 159, 126);">❏</span>
+<span style="font-size:120px;line-height:0.4;color:rgb(167, 159, 126);font-family:Menlo;">❏</span>
 
 ---
 

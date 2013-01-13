@@ -33,8 +33,10 @@ define(function(require) {
         });
 
         afterEach(function() {
-            overlay.hide();
-            overlay.destroy();
+            if (overlay && overlay.element) {
+                overlay.hide();
+                overlay.destroy();
+            }
         });
 
         it('基本属性', function() {
@@ -54,11 +56,6 @@ define(function(require) {
             }
             expect(overlay.element.css('padding-left')).to.equal('11px');
             expect(overlay.element.css('font-size')).to.equal('13px');
-            expect(overlay.get('align').selfXY[0]).to.equal(0);
-            expect(overlay.get('align').selfXY[1]).to.equal(0);
-            expect(overlay.get('align').baseElement).to.equal(document.body);
-            expect(overlay.get('align').baseXY[0]).to.equal(100);
-            expect(overlay.get('align').baseXY[1]).to.equal(100);
         });
 
         it('默认属性', function() {
@@ -73,6 +70,21 @@ define(function(require) {
             expect(overlay.get('visible')).to.equal(false);
             expect(overlay.get('style')).to.eql({});
 
+        });
+        
+        it('align 设置', function() {
+            expect(overlay.get('align').selfXY[0]).to.equal(0);
+            expect(overlay.get('align').selfXY[1]).to.equal(0);
+            expect(overlay.get('align').baseElement).to.equal(document.body);
+            expect(overlay.get('align').baseXY[0]).to.equal(100);
+            expect(overlay.get('align').baseXY[1]).to.equal(100);
+        });
+
+        it('align 默认', function() {
+            overlay.hide().destroy();            
+            overlay = new Overlay({
+                template: '<div></div>'
+            }).render();
             expect(overlay.get('align').selfXY[0]).to.equal(0);
             expect(overlay.get('align').selfXY[1]).to.equal(0);
             expect(overlay.get('align').baseElement._id).to.equal('VIEWPORT');
@@ -113,6 +125,25 @@ define(function(require) {
             overlay.hide();
             expect(overlay.get('visible')).to.equal(false);
             expect(overlay.element.is(':hidden')).to.equal(true);
+        });
+
+        it('Overlay.allOverlays', function() {
+            var num = Overlay.allOverlays.length;
+            var overlay = new Overlay();
+            expect(Overlay.allOverlays.length).to.be(num+1);
+            expect(Overlay.allOverlays[num]).to.be(overlay);
+            overlay.destroy();
+            expect(Overlay.allOverlays.length).to.be(num);
+        });
+
+        it('Overlay.blurOverlays', function() {
+            var num = Overlay.blurOverlays.length;
+            overlay = new Overlay();
+            overlay._blurHide();
+            expect(Overlay.blurOverlays.length).to.be(num+1);
+            expect(Overlay.blurOverlays[num]).to.be(overlay);
+            overlay.destroy();
+            expect(Overlay.blurOverlays.length).to.be(num);
         });
 
     });

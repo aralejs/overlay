@@ -56,6 +56,13 @@ define(function(require, exports, module) {
             this._setupResize();
         },
 
+        destroy: function() {
+            // 销毁两个静态数组中的实例
+            erase(this, Overlay.allOverlays);
+            erase(this, Overlay.blurOverlays);
+            return Overlay.superclass.destroy.call(this);
+        },
+
         // 进行定位
         _setPosition: function(align) {
             // 不在文档流中，定位无效
@@ -152,8 +159,8 @@ define(function(require, exports, module) {
         timeout && clearTimeout(timeout);
         timeout = setTimeout(function() {
             $(Overlay.allOverlays).each(function(i, item) {
-                // 当元素隐藏时，不处理
-                if(!item.get('visible')) {
+                // 当实例为空或隐藏时，不处理
+                if(!item || !item.get('visible')) {
                     return;
                 }
                 item._setPosition();
@@ -173,8 +180,8 @@ define(function(require, exports, module) {
 
     function hideBlurOverlays(e) {
         $(Overlay.blurOverlays).each(function(i, item) {
-            // 当元素隐藏时，不处理
-            if(!item.get('visible')) {
+            // 当实例为空或隐藏时，不处理
+            if(!item || !item.get('visible')) {
                 return;
             }
             
@@ -189,6 +196,16 @@ define(function(require, exports, module) {
             // 到这里，判断触发了元素的 blur 事件，隐藏元素
             item.hide();
         });
+    }
+
+    // 从数组中删除对应元素
+    function erase(target, array) {
+        for(var i=0; i<array.length; i++) {
+            if (target === array[i]) {
+                array.splice(i, 1);
+                return array;
+            }
+        }
     }
 
 });

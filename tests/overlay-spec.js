@@ -146,6 +146,16 @@ define(function(require) {
             expect(Overlay.blurOverlays.length).to.be(num);
         });
 
+        it('setPosition', function() {
+            overlay = new Overlay();
+            var setPosition = sinon.spy(overlay, '_setPosition');
+            expect(setPosition).not.to.be.called();            
+            overlay.render();
+            expect(setPosition).to.be.called.once();
+            overlay.show();
+            expect(setPosition).to.be.called.twice();
+        });
+
     });
 });
 

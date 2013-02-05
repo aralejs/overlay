@@ -2,8 +2,8 @@ define("arale/overlay/1.0.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/p
     var $ = require("$-debug"), Position = require("arale/position/1.0.0/position-debug"), Shim = require("arale/iframe-shim/1.0.0/iframe-shim-debug"), Widget = require("arale/widget/1.0.2/widget-debug");
     // Overlay
     // -------
-    // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable），是一切悬浮类
-    // UI 组件的基类。
+    // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable）
+    // 是一切悬浮类 UI 组件的基类
     var Overlay = Widget.extend({
         attrs: {
             // 基本属性
@@ -147,7 +147,7 @@ define("arale/overlay/1.0.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/p
         return $.contains(document.documentElement, element);
     }
     function hideBlurOverlays(e) {
-        $(Overlay.blurOverlays).each(function(i, item) {
+        $(Overlay.blurOverlays).each(function(index, item) {
             // 当实例为空或隐藏时，不处理
             if (!item || !item.get("visible")) {
                 return;

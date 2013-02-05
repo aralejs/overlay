@@ -8,8 +8,8 @@ define(function(require, exports, module) {
 
     // Overlay
     // -------
-    // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable），是一切悬浮类
-    // UI 组件的基类。
+    // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable）
+    // 是一切悬浮类 UI 组件的基类
 
     var Overlay = Widget.extend({
 
@@ -179,7 +179,7 @@ define(function(require, exports, module) {
     }
 
     function hideBlurOverlays(e) {
-        $(Overlay.blurOverlays).each(function(i, item) {
+        $(Overlay.blurOverlays).each(function(index, item) {
             // 当实例为空或隐藏时，不处理
             if(!item || !item.get('visible')) {
                 return;

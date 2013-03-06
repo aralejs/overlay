@@ -8,7 +8,7 @@
 
 `tag:fixed` [#6](https://github.com/aralejs/overlay/issues/6) 修复了当实例 destroy 后没有在两个静态数组中销毁自己的问题。
 
-`tag:fixed` 修复在 IE6 下设置位置后没有重新同步 iframe-shim 的问题。
+`tag:fixed` 修复在 IE6 下设置位置后没有重新同步 iframe-shim 的问题，并优化了调用 shim.sync 的性能。
 
 `tag:changed` 对 arale.widget 的依赖升级到 1.0.3。
 

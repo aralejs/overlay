@@ -7,6 +7,7 @@
 0.9.13 逐渐稳定下来了，修复一些 bug 后发布为 1.0.0 版本。
 
 `tag:fixed` [#6](https://github.com/aralejs/overlay/issues/6) 修复了当实例 destroy 后没有在两个静态数组中销毁自己的问题。
+`tag:changed` 对 arale/widget 的依赖升级到 1.0.3
 
 
 ## 0.9.13

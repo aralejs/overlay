@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "$": "$",
-        "widget": "arale/widget/1.0.2/widget",
+        "widget": "arale/widget/1.0.3/widget",
         "position": "arale/position/1.0.0/position",
         "iframe-shim": "arale/iframe-shim/1.0.0/iframe-shim"
     },

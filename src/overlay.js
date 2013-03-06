@@ -107,6 +107,12 @@ define(function(require, exports, module) {
                     this.on('change:' + attr, shim.sync, shim);
                 }
             }
+            
+            // 在设置位置后，要重新定位
+            this.after('_setPosition', shim.sync, shim);
+
+            // 在销魂自身后要销毁 shim
+            this.before('destroy', shim.destroy, shim);
         },
 
         // resize窗口时重新定位浮层，用这个方法收集所有浮层实例

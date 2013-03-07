@@ -11,7 +11,9 @@ define("arale/overlay/1.0.0/mask-debug", [ "./overlay-debug", "$-debug", "arale/
             opacity: .2,
             backgroundColor: "#000",
             style: {
-                position: isIE6 ? "absolute" : "fixed"
+                position: isIE6 ? "absolute" : "fixed",
+                top: 0,
+                left: 0
             },
             align: {
                 // undefined 表示相对于当前可视范围定位

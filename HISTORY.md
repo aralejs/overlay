@@ -12,6 +12,8 @@
 
 `tag:changed` 对 arale.widget 的依赖升级到 1.0.3。
 
+`tag:fixed` 修复 Mask 在 Firefox 20 beta 下不显示的问题。
+
 
 ## 0.9.13
 

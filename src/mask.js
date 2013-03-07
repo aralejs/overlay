@@ -21,7 +21,9 @@ define(function(require, exports, module) {
             opacity: .2,
             backgroundColor: '#000',
             style: {
-                position: isIE6 ? 'absolute' : 'fixed'
+                position: isIE6 ? 'absolute' : 'fixed',
+                top: 0,
+                left: 0
             },
 
             align: {

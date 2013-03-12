@@ -54,7 +54,7 @@ define(function(require, exports, module) {
             this._setupShim();
             // 窗口resize时，重新定位浮层
             this._setupResize();
-            // 
+            // 统一在显示之后重新设定位置
             this.after('show', function() {
                 that._setPosition();
             });

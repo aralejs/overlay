@@ -1,5 +1,5 @@
-define("arale/overlay/1.0.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.0/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug" ], function(require, exports, module) {
-    var $ = require("$-debug"), Position = require("arale/position/1.0.0/position-debug"), Shim = require("arale/iframe-shim/1.0.0/iframe-shim-debug"), Widget = require("arale/widget/1.0.3/widget-debug");
+define("arale/overlay/1.0.1/overlay-debug", [ "$-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.0.3/widget-debug", "arale/base/1.0.1/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.0.0/events-debug" ], function(require, exports, module) {
+    var $ = require("$-debug"), Position = require("arale/position/1.0.0/position-debug"), Shim = require("arale/iframe-shim/1.0.1/iframe-shim-debug"), Widget = require("arale/widget/1.0.3/widget-debug");
     // Overlay
     // -------
     // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable）
@@ -41,7 +41,7 @@ define("arale/overlay/1.0.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/p
             this._setupShim();
             // 窗口resize时，重新定位浮层
             this._setupResize();
-            // 
+            // 统一在显示之后重新设定位置
             this.after("show", function() {
                 that._setPosition();
             });

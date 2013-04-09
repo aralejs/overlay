@@ -2,11 +2,10 @@
     "family": "arale",
     "name": "overlay",
     "version": "1.0.1",
-    "root": "arale",
     "description": "基础浮层组件，提供浮层显示隐藏、定位和 select 遮挡等特性。",
-    "tag": "widget",
+    "keywords": ["widget"],
     "author": "afc163 <afc163@gmail.com>",
-    "homepage": "http://aralejs.org/overlay",
+    "homepage": "http://aralejs.org/overlay/",
     "repository": {
         "type": "git",
         "url": "https://github.com/aralejs/overlay"
@@ -14,15 +13,13 @@
     "bugs": {
         "url": "https://github.com/aralejs/overlay/issues"
     },
-    "dependencies": {
-        "$": "$",
-        "widget": "arale/widget/1.0.3/widget",
-        "position": "arale/position/1.0.0/position",
-        "iframe-shim": "arale/iframe-shim/1.0.1/iframe-shim"
-    },
-    "output": {
-        "overlay.js": ["./overlay.js"],
-        "mask.js": ["./mask.js"]
-    },
-    "tests": ["overlay"]
+    "spm": {
+        "alias": {
+            "$": "$",
+            "widget": "arale/widget/1.0.3/widget",
+            "position": "arale/position/1.0.0/position",
+            "iframe-shim": "arale/iframe-shim/1.0.1/iframe-shim"
+        },
+        "output": ["overlay.js", "mask.js"]
+    }
 }

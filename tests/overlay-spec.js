@@ -1,8 +1,10 @@
 define(function(require) {
 
-    var Overlay = require('../src/overlay');
+    var Overlay = require('overlay');
     var $ = require('$');
     var ie678 = $.browser.msie && $.browser.version <= 8;
+    var expect = require('expect');
+    var sinon = require('sinon');
 
     describe('overlay', function() {
 
@@ -149,11 +151,11 @@ define(function(require) {
         it('setPosition', function() {
             overlay = new Overlay();
             var setPosition = sinon.spy(overlay, '_setPosition');
-            expect(setPosition).not.to.be.called();            
+            expect(setPosition.called).not.to.be.ok();
             overlay.render();
-            expect(setPosition).to.be.called.once();
+            expect(setPosition.calledOnce).to.be.ok();
             overlay.show();
-            expect(setPosition).to.be.called.twice();
+            expect(setPosition.calledTwice).to.be.ok();
         });
 
     });

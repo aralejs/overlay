@@ -3,6 +3,7 @@
 ---
 
 [![Build Status](https://secure.travis-ci.org/aralejs/overlay.png)](https://travis-ci.org/aralejs/overlay)
+[![Coverage Status](https://coveralls.io/repos/aralejs/overlay/badge.png?branch=master)](https://coveralls.io/r/aralejs/overlay)
 
 
 基础浮层组件，提供浮层显示隐藏、定位和 IE6 下 select 遮挡、窗口 resize 时重新定位、点击页面空白处浮层消失等等特性，是所有浮层类组件的基类。

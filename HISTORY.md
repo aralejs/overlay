@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.0
+
+`tag:changed` 升级 widget 到 1.1.0
+
 ## 1.0.1
 
 升级 iframe-shim 到 1.0.1

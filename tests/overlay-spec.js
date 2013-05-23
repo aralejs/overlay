@@ -70,10 +70,10 @@ define(function(require) {
             expect(overlay.element.width()).to.equal(0);
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(99);
             expect(overlay.get('visible')).to.equal(false);
-            expect(overlay.get('style')).to.eql({});
+            expect(overlay.get('style')).to.eql(null);
 
         });
-        
+
         it('align 设置', function() {
             expect(overlay.get('align').selfXY[0]).to.equal(0);
             expect(overlay.get('align').selfXY[1]).to.equal(0);
@@ -83,7 +83,7 @@ define(function(require) {
         });
 
         it('align 默认', function() {
-            overlay.hide().destroy();            
+            overlay.hide().destroy();
             overlay = new Overlay({
                 template: '<div></div>'
             }).render();
@@ -130,8 +130,10 @@ define(function(require) {
         });
 
         it('Overlay.allOverlays', function() {
+            overlay.hide().destroy();
             var num = Overlay.allOverlays.length;
-            var overlay = new Overlay();
+
+            overlay = new Overlay();
             expect(Overlay.allOverlays.length).to.be(num+1);
             expect(Overlay.allOverlays[num]).to.be(overlay);
             overlay.destroy();
@@ -139,6 +141,7 @@ define(function(require) {
         });
 
         it('Overlay.blurOverlays', function() {
+            overlay.hide().destroy();
             var num = Overlay.blurOverlays.length;
             overlay = new Overlay();
             overlay._blurHide();
@@ -149,6 +152,7 @@ define(function(require) {
         });
 
         it('setPosition', function() {
+            overlay.hide().destroy();
             overlay = new Overlay();
             var setPosition = sinon.spy(overlay, '_setPosition');
             expect(setPosition.called).not.to.be.ok();
@@ -158,6 +162,58 @@ define(function(require) {
             expect(setPosition.calledTwice).to.be.ok();
         });
 
+
+
+        it("隐藏元素的 Overlay", function() {
+            overlay.hide().destroy();
+            //var element = $('<div style="display: none;">我是看不见的 Overlay</div>').appendTo("body");
+            overlay = new Overlay({
+                //element: element,
+                template: '<div style="display: none;">我是看不见的 Overlay</div>',
+                width: 120,
+                height: 110,
+                align: {
+                    selfXY: [0, 0],
+                    baseXY: [100, 100]
+                }
+            }).render();
+            expect(overlay.get('visible')).to.equal(false);
+            overlay.show();
+            expect(overlay.element.offset().left).to.eql(100);
+            expect(overlay.element.offset().top).to.eql(100);
+        });
+
+        it("_blurHide", function () {
+            overlay.hide().destroy();
+
+            var testPopup = Overlay.extend({
+                attrs: {
+                    trigger: null
+                },
+                setup: function () {
+                    var that = this;
+                    testPopup.superclass.setup.call(this);
+                    this._setPosition();
+                    $(this.get('trigger')).click(function () {
+                        that.show();
+                    });
+                    this._blurHide(this.get('trigger'));
+                }
+            });
+            overlay = new testPopup({
+                trigger: $("<a >点击我</a>").appendTo("body"),
+                template: '<div>我是 Overlay</div>'
+            });
+
+            overlay.get("trigger").click();
+
+            expect(overlay.get("visible")).to.equal(true);
+            $("body").click();
+            expect(overlay.get("visible")).to.equal(false);
+
+            overlay.get("trigger").off().remove();
+
+        });
     });
 });
 

@@ -166,10 +166,10 @@ define(function(require) {
 
         it("隐藏元素的 Overlay", function() {
             overlay.hide().destroy();
-            //var element = $('<div style="display: none;">我是看不见的 Overlay</div>').appendTo("body");
+            var element = $('<div style="display: none;">我是看不见的 Overlay</div>').appendTo("body");
             overlay = new Overlay({
-                //element: element,
-                template: '<div style="display: none;">我是看不见的 Overlay</div>',
+                element: element,
+                //template: '<div style="display: none;">我是看不见的 Overlay</div>',
                 width: 120,
                 height: 110,
                 align: {
@@ -193,7 +193,6 @@ define(function(require) {
                 setup: function () {
                     var that = this;
                     testPopup.superclass.setup.call(this);
-                    this._setPosition();
                     $(this.get('trigger')).click(function () {
                         that.show();
                     });
@@ -208,11 +207,47 @@ define(function(require) {
             overlay.get("trigger").click();
 
             expect(overlay.get("visible")).to.equal(true);
+
+
+            var hide = sinon.spy(overlay, 'hide');
+
+            overlay.set("visible", false);
+
             $("body").click();
-            expect(overlay.get("visible")).to.equal(false);
+            expect(hide.called).not.to.be.ok();
 
+            overlay.set("visible", true);
+            $("body").click();
+            expect(hide.callCount).to.be(1);
             overlay.get("trigger").off().remove();
+        });
 
+
+
+        it('setPosition', function(done) {
+            overlay.hide().destroy();
+            overlay = new Overlay();
+            var setPosition = sinon.spy(overlay, '_setPosition');
+            expect(setPosition.called).not.to.be.ok();
+            overlay.render();
+            expect(setPosition.callCount).to.be(1);
+            overlay.show();
+            expect(setPosition.callCount).to.be(2);
+
+            $(window).resize();
+
+            setTimeout(function() {
+                expect(setPosition.callCount).to.be(3);
+
+                overlay.set("visible", false);
+
+                $(window).resize();
+
+                setTimeout(function () {
+                    expect(setPosition.callCount).to.be(3);
+                    done();
+                }, 100);
+            }, 100);
         });
     });
 });

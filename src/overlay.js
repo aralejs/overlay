@@ -73,6 +73,10 @@ define(function(require, exports, module) {
             if (!isInDocument(this.element[0])) return;
 
             align || (align = this.get('align'));
+            
+            // 如果align为空，表示不需要使用js对齐
+            if(!align) return;
+            
             var isHidden = this.element.css('display') === 'none';
 
             // 在定位时，为避免元素高度不定，先显示出来

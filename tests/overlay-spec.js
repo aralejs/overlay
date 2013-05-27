@@ -1,6 +1,7 @@
 define(function(require) {
 
     var Overlay = require('overlay');
+    var Position = require('position');
     var $ = require('$');
     var ie678 = $.browser.msie && $.browser.version <= 8;
     var expect = require('expect');
@@ -162,7 +163,15 @@ define(function(require) {
             expect(setPosition.calledTwice).to.be.ok();
         });
 
-
+        it('set align to null', function() {
+            overlay.hide().destroy();
+            overlay = new Overlay({
+                align: null
+            });
+            var pin = sinon.spy(Position, 'pin');
+            overlay.show();            
+            expect(pin.called).not.to.be.ok();
+        });
 
         it("隐藏元素的 Overlay", function() {
             overlay.hide().destroy();

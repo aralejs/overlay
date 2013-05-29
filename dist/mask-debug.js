@@ -1,4 +1,4 @@
-define("arale/overlay/1.1.0/mask-debug", [ "$-debug", "./overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/overlay/1.1.0/mask-debug", [ "$-debug", "./overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("./overlay-debug"), isIE6 = ($.browser || 0).msie && $.browser.version == 6, body = $(document.body), doc = $(document);
     // Mask
     // ----------
@@ -42,8 +42,8 @@ define("arale/overlay/1.1.0/mask-debug", [ "$-debug", "./overlay-debug", "arale/
     module.exports = new Mask();
 });
 
-define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
-    var $ = require("$-debug"), Position = require("arale/position/1.0.0/position-debug"), Shim = require("arale/iframe-shim/1.0.1/iframe-shim-debug"), Widget = require("arale/widget/1.1.0/widget-debug");
+define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+    var $ = require("$-debug"), Position = require("arale/position/1.0.0/position-debug"), Shim = require("arale/iframe-shim/1.0.2/iframe-shim-debug"), Widget = require("arale/widget/1.1.0/widget-debug");
     // Overlay
     // -------
     // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable）
@@ -101,6 +101,8 @@ define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/p
             // 不在文档流中，定位无效
             if (!isInDocument(this.element[0])) return;
             align || (align = this.get("align"));
+            // 如果align为空，表示不需要使用js对齐
+            if (!align) return;
             var isHidden = this.element.css("display") === "none";
             // 在定位时，为避免元素高度不定，先显示出来
             if (isHidden) {

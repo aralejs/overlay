@@ -233,7 +233,7 @@ define(function(require) {
 
 
 
-        it('setPosition2', function(done) {
+        it('setPosition when resize', function(done) {
             overlay.hide().destroy();
             overlay = new Overlay();
             var setPosition = sinon.spy(overlay, '_setPosition');

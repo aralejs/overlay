@@ -21,7 +21,7 @@
         "alias": {
             "$": "$",
             "widget": "arale/widget/1.1.0/widget",
-            "position": "arale/position/1.0.0/position",
+            "position": "arale/position/1.0.1/position",
             "iframe-shim": "arale/iframe-shim/1.0.2/iframe-shim"
         },
         "output": ["overlay.js", "mask.js"]

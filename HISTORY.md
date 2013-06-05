@@ -4,7 +4,7 @@
 
 ## 1.1.0
 
-`tag:changed` 升级 widget 到 1.1.0, 升级 iframe-shim 到 1.0.2, 升级 position 到 1.0.1
+`tag:improved` 升级 widget 到 1.1.0, 升级 iframe-shim 到 1.0.2, 升级 position 到 1.0.1
 
 `tag:improved` [#8](https://github.com/aralejs/overlay/pull/8) 如果 align 为空不再使用 js 定位
 

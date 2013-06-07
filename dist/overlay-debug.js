@@ -1,4 +1,4 @@
-define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/position/1.0.0/position-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Position = require("arale/position/1.0.1/position-debug"), Shim = require("arale/iframe-shim/1.0.2/iframe-shim-debug"), Widget = require("arale/widget/1.1.0/widget-debug");
     // Overlay
     // -------
@@ -7,8 +7,8 @@ define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.1/p
     var Overlay = Widget.extend({
         attrs: {
             // 基本属性
-            width: "",
-            height: "",
+            width: null,
+            height: null,
             zIndex: 99,
             visible: false,
             // 定位配置

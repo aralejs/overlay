@@ -30,27 +30,6 @@ define(function(require, exports, module) {
                 baseXY: [0, 0]
             },
 
-            style: {
-                value: null,
-                setter: function(v) {
-                    // 有设 align 的时候, 当没有设置 v.position, 强制设个 position.
-                    // 同时, 当都没有设置 left 和 top 时, 强制先设个值,
-                    // 避免当 position: static/absolute, 没有 left/top 值时, 插入到页面底部后
-                    // 瞬间出现浏览器滚动条, 获取可视区域宽高不对, 以致定位有几像素的偏差
-                    if (this.get("align") && v) {
-                        if (v.position == undefined ) {
-                            v.position = "absolute";
-                        }
-                        if (v.left == undefined && v.top == undefined) {
-                            v.left = -9999;
-                            v.top = -9999;
-                        }
-                    }
-
-                    return v;
-                }
-            },
-
             // 父元素
             parentNode: document.body
         },

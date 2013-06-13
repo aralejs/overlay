@@ -15,8 +15,8 @@ define(function(require, exports, module) {
 
         attrs: {
             // 基本属性
-            width: '',
-            height: '',
+            width: null,
+            height: null,
             zIndex: 99,
             visible: false,
 

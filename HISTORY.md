@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.1
+
+`tag:improved` 升级 widget 到 1.1.1
+
 ## 1.1.0
 
 `tag:improved` 升级 widget 到 1.1.0, 升级 iframe-shim 到 1.0.2, 升级 position 到 1.0.1

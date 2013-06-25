@@ -49,7 +49,7 @@ define(function(require) {
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(90);
             expect(overlay.get('visible')).to.equal(false);
             expect(['#e80', 'rgb(238, 136, 0)']).to.contain(overlay.element.css('color'));
-            expect(['green', 'rgb(0, 128, 0)']).to.equal(overlay.element.css('background-color'));
+            expect(['green', 'rgb(0, 128, 0)']).to.contain(overlay.element.css('background-color'));
             expect(overlay.element.css('padding-left')).to.equal('11px');
             expect(overlay.element.css('font-size')).to.equal('13px');
         });
@@ -102,7 +102,7 @@ define(function(require) {
             expect(overlay.element.css('width')).to.equal('300px');
             expect(overlay.element.css('height')).to.equal('400px');
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(101);
-            expect(['red', 'rgb(255, 0, 0)']).to.equal(overlay.element.css('background-color'));
+            expect(['red', 'rgb(255, 0, 0)']).to.contain(overlay.element.css('background-color'));
             expect(overlay.element.attr('id')).to.equal('myid');
             expect(overlay.element.hasClass('myclass')).to.equal(true);
             expect(overlay.element.is(':hidden')).to.equal(false);

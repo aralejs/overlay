@@ -3,7 +3,6 @@ define(function(require) {
     var Overlay = require('overlay');
     var Position = require('position');
     var $ = require('$');
-    var ie678 = $.browser.msie && $.browser.version <= 8;
     var expect = require('expect');
     var sinon = require('sinon');
 
@@ -49,14 +48,8 @@ define(function(require) {
             expect(overlay.element.css('height')).to.equal('110px');
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(90);
             expect(overlay.get('visible')).to.equal(false);
-            if (ie678) {
-                expect(overlay.element.css('color')).to.equal('#e80');
-                expect(overlay.element.css('background-color')).to.equal('green');
-            }
-            else {
-                expect(overlay.element.css('color')).to.equal('rgb(238, 136, 0)');
-                expect(overlay.element.css('background-color')).to.equal('rgb(0, 128, 0)');
-            }
+            expect(['#e80', 'rgb(238, 136, 0)']).to.contain(overlay.element.css('color'));
+            expect(['green', 'rgb(0, 128, 0)']).to.equal(overlay.element.css('background-color'));
             expect(overlay.element.css('padding-left')).to.equal('11px');
             expect(overlay.element.css('font-size')).to.equal('13px');
         });
@@ -109,12 +102,7 @@ define(function(require) {
             expect(overlay.element.css('width')).to.equal('300px');
             expect(overlay.element.css('height')).to.equal('400px');
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(101);
-            if (ie678) {
-                expect(overlay.element.css('background-color')).to.equal('red');
-            }
-            else {
-                expect(overlay.element.css('background-color')).to.equal('rgb(255, 0, 0)');
-            }
+            expect(['red', 'rgb(255, 0, 0)']).to.equal(overlay.element.css('background-color'));
             expect(overlay.element.attr('id')).to.equal('myid');
             expect(overlay.element.hasClass('myclass')).to.equal(true);
             expect(overlay.element.is(':hidden')).to.equal(false);

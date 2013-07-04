@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.2
+
+`tag:fixed` 修复 ie678 下莫名其妙触发 resize 事件的问题
+
 ## 1.1.1
 
 `tag:improved` 升级 widget 到 1.1.1

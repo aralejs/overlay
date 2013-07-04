@@ -166,19 +166,27 @@ define(function(require, exports, module) {
     });
 
     // 绑定 resize 重新定位事件
-    var timeout;    
+    var timeout;
+    var winWidth = $(window).width(), winHeight = $(window).height();
     Overlay.allOverlays = [];
     $(window).resize(function() {
-        timeout && clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            $(Overlay.allOverlays).each(function(i, item) {
-                // 当实例为空或隐藏时，不处理
-                if(!item || !item.get('visible')) {
-                    return;
-                }
-                item._setPosition();
-            });
-        }, 80);
+        var winNewWidth = $(window).width(), winNewHeight = $(window).height();
+        // IE678 莫名其妙触发 resize 
+        // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
+        if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
+            timeout && clearTimeout(timeout);
+            timeout = setTimeout(function() {
+                $(Overlay.allOverlays).each(function(i, item) {
+                    // 当实例为空或隐藏时，不处理
+                    if(!item || !item.get('visible')) {
+                        return;
+                    }
+                    item._setPosition();
+                });
+            }, 80);
+        }
+        winWidth = winNewWidth;
+        winHeight = winNewHeight;
     });
 
     module.exports = Overlay;

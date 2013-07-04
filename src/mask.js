@@ -2,7 +2,10 @@ define(function(require, exports, module) {
 
     var $ = require('$'),
         Overlay = require('./overlay'),
-        isIE6 = ($.browser || 0).msie && $.browser.version == 6.0,
+
+        ua = (window.navigator.userAgent || "").toLowerCase(),
+        isIE6 = ua.indexOf("msie 6") !== -1,
+
         body = $(document.body),
         doc = $(document);
 

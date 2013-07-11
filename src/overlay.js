@@ -167,15 +167,19 @@ define(function(require, exports, module) {
 
     // 绑定 resize 重新定位事件
     var timeout;
-    var winWidth = $(window).width(), winHeight = $(window).height();
+    var winWidth = $(window).width();
+    var winHeight = $(window).height();
     Overlay.allOverlays = [];
+
     $(window).resize(function() {
-        var winNewWidth = $(window).width(), winNewHeight = $(window).height();
-        // IE678 莫名其妙触发 resize 
-        // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
-        if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
-            timeout && clearTimeout(timeout);
-            timeout = setTimeout(function() {
+        timeout && clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            var winNewWidth = $(window).width();
+            var winNewHeight = $(window).height();
+
+            // IE678 莫名其妙触发 resize 
+            // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
+            if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
                 $(Overlay.allOverlays).each(function(i, item) {
                     // 当实例为空或隐藏时，不处理
                     if(!item || !item.get('visible')) {
@@ -183,10 +187,11 @@ define(function(require, exports, module) {
                     }
                     item._setPosition();
                 });
-            }, 80);
-        }
-        winWidth = winNewWidth;
-        winHeight = winNewHeight;
+            }
+
+            winWidth = winNewWidth;
+            winHeight = winNewHeight;
+        }, 80);
     });
 
     module.exports = Overlay;

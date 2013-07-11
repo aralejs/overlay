@@ -223,8 +223,6 @@ define(function(require) {
             overlay.get("trigger").off().remove();
         });
 
-
-
         xit('setPosition when resize', function(done) {
             overlay.hide().destroy();
             overlay = new Overlay();

@@ -1,4 +1,4 @@
-define("arale/overlay/1.1.2/mask-debug", [ "$-debug", "./overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/position/1.0.0/position-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/overlay/1.1.2/mask-debug", [ "$-debug", "./overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("./overlay-debug"), ua = (window.navigator.userAgent || "").toLowerCase(), isIE6 = ua.indexOf("msie 6") !== -1, body = $(document.body), doc = $(document);
     // Mask
     // ----------
@@ -42,7 +42,7 @@ define("arale/overlay/1.1.2/mask-debug", [ "$-debug", "./overlay-debug", "arale/
     module.exports = new Mask();
 });
 
-define("arale/overlay/1.1.2/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/position/1.0.0/position-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/overlay/1.1.2/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Position = require("arale/position/1.0.1/position-debug"), Shim = require("arale/iframe-shim/1.0.2/iframe-shim-debug"), Widget = require("arale/widget/1.1.1/widget-debug");
     // Overlay
     // -------
@@ -180,15 +180,17 @@ define("arale/overlay/1.1.2/overlay-debug", [ "$-debug", "arale/position/1.0.1/p
     });
     // 绑定 resize 重新定位事件
     var timeout;
-    var winWidth = $(window).width(), winHeight = $(window).height();
+    var winWidth = $(window).width();
+    var winHeight = $(window).height();
     Overlay.allOverlays = [];
     $(window).resize(function() {
-        var winNewWidth = $(window).width(), winNewHeight = $(window).height();
-        // IE678 莫名其妙触发 resize 
-        // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
-        if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
-            timeout && clearTimeout(timeout);
-            timeout = setTimeout(function() {
+        timeout && clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            var winNewWidth = $(window).width();
+            var winNewHeight = $(window).height();
+            // IE678 莫名其妙触发 resize 
+            // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
+            if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
                 $(Overlay.allOverlays).each(function(i, item) {
                     // 当实例为空或隐藏时，不处理
                     if (!item || !item.get("visible")) {
@@ -196,10 +198,10 @@ define("arale/overlay/1.1.2/overlay-debug", [ "$-debug", "arale/position/1.0.1/p
                     }
                     item._setPosition();
                 });
-            }, 80);
-        }
-        winWidth = winNewWidth;
-        winHeight = winNewHeight;
+            }
+            winWidth = winNewWidth;
+            winHeight = winNewHeight;
+        }, 80);
     });
     module.exports = Overlay;
     // Helpers

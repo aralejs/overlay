@@ -54,7 +54,7 @@
 
 ### align `object`
 
-定位对象，形似下面代码。这块的定位原理可参照`arale.position`组件的 *pin* 方法。
+定位对象，形似下面代码。这块的定位原理可参照 [arale/position](http://aralejs.org/position/) 组件的 *pin* 方法。
 
 ```js
 {

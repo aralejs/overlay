@@ -1,4 +1,4 @@
-define("arale/overlay/1.1.2/mask-debug", [ "$-debug", "./overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/overlay/1.1.3/mask-debug", [ "$-debug", "./overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Overlay = require("./overlay-debug"), ua = (window.navigator.userAgent || "").toLowerCase(), isIE6 = ua.indexOf("msie 6") !== -1, body = $(document.body), doc = $(document);
     // Mask
     // ----------
@@ -27,10 +27,6 @@ define("arale/overlay/1.1.2/mask-debug", [ "$-debug", "./overlay-debug", "arale/
             }
             return Mask.superclass.show.call(this);
         },
-        setup: function() {
-            // 加载 iframe 遮罩层并与 overlay 保持同步
-            this._setupShim();
-        },
         _onRenderBackgroundColor: function(val) {
             this.element.css("backgroundColor", val);
         },
@@ -42,7 +38,7 @@ define("arale/overlay/1.1.2/mask-debug", [ "$-debug", "./overlay-debug", "arale/
     module.exports = new Mask();
 });
 
-define("arale/overlay/1.1.2/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/overlay/1.1.3/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Position = require("arale/position/1.0.1/position-debug"), Shim = require("arale/iframe-shim/1.0.2/iframe-shim-debug"), Widget = require("arale/widget/1.1.1/widget-debug");
     // Overlay
     // -------

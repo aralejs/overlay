@@ -2,9 +2,16 @@
 
 ---
 
+## 1.1.3
+
+`tag:fixed` #13 修复 mask 模块不会创建 iframe-shim 的问题。
+
+
 ## 1.1.2
 
-`tag:fixed` 修复 ie678 下莫名其妙触发 resize 事件的问题
+`tag:fixed` 修复 ie678 下莫名其妙触发 resize 事件的问题。
+
+`tag:unresolved` mask 模块在 ie6 下无法正确遮挡 select。
 
 ## 1.1.1
 

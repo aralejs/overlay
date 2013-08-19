@@ -161,7 +161,7 @@ define(function(require) {
                 align: null
             });
             var pin = sinon.spy(Position, 'pin');
-            overlay.show();            
+            overlay.show();
             expect(pin.called).not.to.be.ok();
         });
 

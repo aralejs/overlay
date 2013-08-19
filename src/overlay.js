@@ -73,10 +73,10 @@ define(function(require, exports, module) {
             if (!isInDocument(this.element[0])) return;
 
             align || (align = this.get('align'));
-            
+
             // 如果align为空，表示不需要使用js对齐
             if(!align) return;
-            
+
             var isHidden = this.element.css('display') === 'none';
 
             // 在定位时，为避免元素高度不定，先显示出来
@@ -108,7 +108,7 @@ define(function(require, exports, module) {
 
             // 在隐藏和设置位置后，要重新定位
             // 显示后会设置位置，所以不用绑定 shim.sync
-            this.after('hide _setPosition', shim.sync, shim);  
+            this.after('hide _setPosition', shim.sync, shim);
 
             // 除了 parentNode 之外的其他属性发生变化时，都触发 shim 同步
             var attrs = ['width', 'height'];
@@ -117,7 +117,7 @@ define(function(require, exports, module) {
                     this.on('change:' + attr, shim.sync, shim);
                 }
             }
-            
+
             // 在销魂自身前要销毁 shim
             this.before('destroy', shim.destroy, shim);
         },
@@ -126,7 +126,7 @@ define(function(require, exports, module) {
         _setupResize: function() {
             Overlay.allOverlays.push(this);
         },
-        
+
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
         _blurHide: function(arr) {
             arr = $.makeArray(arr);
@@ -210,7 +210,7 @@ define(function(require, exports, module) {
             if(!item || !item.get('visible')) {
                 return;
             }
-            
+
             // 遍历 _relativeElements ，当点击的元素落在这些元素上时，不处理
             for(var i=0; i<item._relativeElements.length; i++) {
                 var el = $(item._relativeElements[i])[0];

@@ -177,7 +177,7 @@ define(function(require, exports, module) {
             var winNewWidth = $(window).width();
             var winNewHeight = $(window).height();
 
-            // IE678 莫名其妙触发 resize 
+            // IE678 莫名其妙触发 resize
             // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
             if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
                 $(Overlay.allOverlays).each(function(i, item) {

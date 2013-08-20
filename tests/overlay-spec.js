@@ -5,6 +5,8 @@ define(function(require) {
     var $ = require('$');
     var expect = require('expect');
     var sinon = require('sinon');
+    var ua = (window.navigator.userAgent || "").toLowerCase();
+    var isIE6 = ua.indexOf("msie 6") !== -1;
 
     describe('overlay', function() {
 
@@ -247,6 +249,22 @@ define(function(require) {
                     done();
                 }, 100);
             }, 100);
+        });
+
+        it('iframe-shim should work', function() {
+            overlay.hide().destroy();
+            overlay = new Overlay({
+                id: 'testOverlay',
+                width: 300,
+                height: 300,
+                align: {
+                    baseXY: [0, 0]
+                }
+            });
+            overlay.show();
+            if (isIE6) {
+                expect($('#testOverlay').prev()[0].tagName).to.be('IFRAME');
+            }
         });
     });
 });

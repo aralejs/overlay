@@ -298,13 +298,15 @@ define(function(require) {
 
         it('mask default attrs', function() {
             mask.show();
-            //expect(mask.element.css('background-color')).to.be('rgb(0, 0, 0)');
+            var color = mask.element.css('background-color');
+            expect(color === 'rgb(0, 0, 0)' || color === '#000').to.be(true);
             expect(Number(mask.element.css('opacity')).toFixed(1)).to.be('0.2');
         });
 
         it('mask set attrs', function() {
             mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
-            //expect(mask.element.css('background-color')).to.be('rgb(0, 128, 0)');
+            var color = mask.element.css('background-color');
+            expect(color === 'rgb(0, 128, 0)' || color === 'green').to.be(true);
             expect(Number(mask.element.css('opacity')).toFixed(1)).to.be('0.3');
         });
 

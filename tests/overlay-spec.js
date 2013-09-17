@@ -266,6 +266,54 @@ define(function(require) {
                 expect($('#testOverlay').prev()[0].tagName).to.be('IFRAME');
             }
         });
+
+    });
+
+    describe('mask', function() {
+
+        var mask;
+
+        beforeEach(function() {
+            mask = require('mask');
+        });
+
+        afterEach(function() {
+            mask.hide();
+        });
+
+        it('mask show', function() {
+            mask.show();
+            expect($('.ui-mask').length).to.be(1);
+            expect($('.ui-mask').is(':visible')).to.be.ok();
+            mask.hide();
+            expect($('.ui-mask').is(':visible')).not.to.be.ok();
+        });
+
+        it('mask has iframe', function() {
+            mask.show();
+            if (isIE6) {
+                expect($('.ui-mask').prev()[0].tagName).to.be('IFRAME');
+            }
+        });
+
+        it('mask default attrs', function() {
+            mask.show();
+            //expect(mask.element.css('background-color')).to.be('rgb(0, 0, 0)');
+            expect(Number(mask.element.css('opacity')).toFixed(1)).to.be('0.2');
+        });
+
+        it('mask set attrs', function() {
+            mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
+            //expect(mask.element.css('background-color')).to.be('rgb(0, 128, 0)');
+            expect(Number(mask.element.css('opacity')).toFixed(1)).to.be('0.3');
+        });
+
+        it('mask single instance', function() {
+            var oldMask = mask;
+            newMask = require('mask');
+            expect(oldMask).to.be(newMask);
+        });
+
     });
 });
 

@@ -1,4 +1,4 @@
-define("arale/overlay/1.1.3/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+define("arale/overlay/1.1.4/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
     var $ = require("$-debug"), Position = require("arale/position/1.0.1/position-debug"), Shim = require("arale/iframe-shim/1.0.2/iframe-shim-debug"), Widget = require("arale/widget/1.1.1/widget-debug");
     // Overlay
     // -------
@@ -19,6 +19,11 @@ define("arale/overlay/1.1.3/overlay-debug", [ "$-debug", "arale/position/1.0.1/p
                 baseElement: Position.VIEWPORT,
                 // 基准定位元素的定位点，默认为左上角
                 baseXY: [ 0, 0 ]
+            },
+            style: {
+                position: "absolute",
+                left: "-9999px",
+                top: "-9999px"
             },
             // 父元素
             parentNode: document.body
@@ -144,7 +149,7 @@ define("arale/overlay/1.1.3/overlay-debug", [ "$-debug", "arale/position/1.0.1/p
         timeout = setTimeout(function() {
             var winNewWidth = $(window).width();
             var winNewHeight = $(window).height();
-            // IE678 莫名其妙触发 resize 
+            // IE678 莫名其妙触发 resize
             // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
             if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
                 $(Overlay.allOverlays).each(function(i, item) {

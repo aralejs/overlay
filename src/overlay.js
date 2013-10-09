@@ -30,6 +30,12 @@ define(function(require, exports, module) {
                 baseXY: [0, 0]
             },
 
+            style: {
+                position: 'absolute',
+                left: '-9999px',
+                top: '-9999px'
+            },
+
             // 父元素
             parentNode: document.body
         },

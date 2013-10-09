@@ -66,8 +66,12 @@ define(function(require) {
             expect(overlay.element.width()).to.equal(0);
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(99);
             expect(overlay.get('visible')).to.equal(false);
-            expect(overlay.get('style')).to.eql(null);
-
+            //expect(overlay.get('style')).to.eql(null);
+            expect(overlay.get('style')).to.eql({
+                position: 'absolute',
+                left: '-9999px',
+                top: '-9999px'
+            });
         });
 
         it('align 设置', function() {

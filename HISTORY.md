@@ -4,6 +4,10 @@
 
 ## 1.1.3
 
+`FIXED` [#12](https://github.com/aralejs/tip/issues/12) 滚动条导致定位不准确
+
+## 1.1.3
+
 `FIXED` #13 修复 mask 模块不会创建 iframe-shim 的问题。
 
 

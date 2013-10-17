@@ -2,7 +2,7 @@
 
 ---
 
-## 1.1.3
+## 1.1.4
 
 `FIXED` [#12](https://github.com/aralejs/tip/issues/12) 滚动条导致定位不准确
 

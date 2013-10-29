@@ -30,12 +30,6 @@ define(function(require, exports, module) {
                 baseXY: [0, 0]
             },
 
-            style: {
-                position: 'absolute',
-                left: '-9999px',
-                top: '-9999px'
-            },
-
             // 父元素
             parentNode: document.body
         },
@@ -60,6 +54,17 @@ define(function(require, exports, module) {
             this._setupShim();
             // 窗口resize时，重新定位浮层
             this._setupResize();
+
+            this.after('render', function() {
+                var _pos = this.element.css('position');
+                if (_pos === 'static' || _pos === 'relative') {
+                    this.element.css({
+                        position: 'absolute',
+                        left: '-9999px',
+                        top: '-9999px'
+                    });
+                }
+            });
             // 统一在显示之后重新设定位置
             this.after('show', function() {
                 that._setPosition();
@@ -87,7 +92,10 @@ define(function(require, exports, module) {
 
             // 在定位时，为避免元素高度不定，先显示出来
             if (isHidden) {
-                this.element.css({ visibility: 'hidden', display: 'block' });
+                this.element.css({
+                    visibility: 'hidden',
+                    display: 'block'
+                });
             }
 
             Position.pin({

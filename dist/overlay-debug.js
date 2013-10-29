@@ -20,11 +20,6 @@ define("arale/overlay/1.1.4/overlay-debug", [ "$-debug", "arale/position/1.0.1/p
                 // 基准定位元素的定位点，默认为左上角
                 baseXY: [ 0, 0 ]
             },
-            style: {
-                position: "absolute",
-                left: "-9999px",
-                top: "-9999px"
-            },
             // 父元素
             parentNode: document.body
         },
@@ -46,6 +41,16 @@ define("arale/overlay/1.1.4/overlay-debug", [ "$-debug", "arale/position/1.0.1/p
             this._setupShim();
             // 窗口resize时，重新定位浮层
             this._setupResize();
+            this.after("render", function() {
+                var _pos = this.element.css("position");
+                if (_pos === "static" || _pos === "relative") {
+                    this.element.css({
+                        position: "absolute",
+                        left: "-9999px",
+                        top: "-9999px"
+                    });
+                }
+            });
             // 统一在显示之后重新设定位置
             this.after("show", function() {
                 that._setPosition();

@@ -54,6 +54,7 @@ define(function(require) {
             expect(['green', 'rgb(0, 128, 0)']).to.contain(overlay.element.css('background-color'));
             expect(overlay.element.css('padding-left')).to.equal('11px');
             expect(overlay.element.css('font-size')).to.equal('13px');
+            expect(overlay.element.css('position')).to.equal('absolute');
         });
 
         it('默认属性', function() {
@@ -66,12 +67,7 @@ define(function(require) {
             expect(overlay.element.width()).to.equal(0);
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(99);
             expect(overlay.get('visible')).to.equal(false);
-            //expect(overlay.get('style')).to.eql(null);
-            expect(overlay.get('style')).to.eql({
-                position: 'absolute',
-                left: '-9999px',
-                top: '-9999px'
-            });
+            expect(overlay.get('style')).to.eql(null);
         });
 
         it('align 设置', function() {
@@ -251,8 +247,8 @@ define(function(require) {
                 setTimeout(function () {
                     expect(setPosition.callCount).to.be(3);
                     done();
-                }, 100);
-            }, 100);
+                }, 200);
+            }, 200);
         });
 
         it('iframe-shim should work', function() {

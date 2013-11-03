@@ -173,3 +173,7 @@ Overlay 继承了 [widget](http://aralejs.org/widget/)，可使用其中包括 [
     },
     ```
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aralejs/overlay/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

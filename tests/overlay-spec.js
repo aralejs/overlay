@@ -1,10 +1,12 @@
 define(function(require) {
 
     var Overlay = require('overlay');
+    var Position = require('position');
     var $ = require('$');
-    var ie678 = $.browser.msie && $.browser.version <= 8;
     var expect = require('expect');
     var sinon = require('sinon');
+    var ua = (window.navigator.userAgent || "").toLowerCase();
+    var isIE6 = ua.indexOf("msie 6") !== -1;
 
     describe('overlay', function() {
 
@@ -48,16 +50,11 @@ define(function(require) {
             expect(overlay.element.css('height')).to.equal('110px');
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(90);
             expect(overlay.get('visible')).to.equal(false);
-            if (ie678) {
-                expect(overlay.element.css('color')).to.equal('#e80');
-                expect(overlay.element.css('background-color')).to.equal('green');
-            }
-            else {
-                expect(overlay.element.css('color')).to.equal('rgb(238, 136, 0)');
-                expect(overlay.element.css('background-color')).to.equal('rgb(0, 128, 0)');
-            }
+            expect(['#e80', 'rgb(238, 136, 0)']).to.contain(overlay.element.css('color'));
+            expect(['green', 'rgb(0, 128, 0)']).to.contain(overlay.element.css('background-color'));
             expect(overlay.element.css('padding-left')).to.equal('11px');
             expect(overlay.element.css('font-size')).to.equal('13px');
+            expect(overlay.element.css('position')).to.equal('absolute');
         });
 
         it('默认属性', function() {
@@ -71,7 +68,6 @@ define(function(require) {
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(99);
             expect(overlay.get('visible')).to.equal(false);
             expect(overlay.get('style')).to.eql(null);
-
         });
 
         it('align 设置', function() {
@@ -108,12 +104,7 @@ define(function(require) {
             expect(overlay.element.css('width')).to.equal('300px');
             expect(overlay.element.css('height')).to.equal('400px');
             expect(parseInt(overlay.element[0].style.zIndex)).to.equal(101);
-            if (ie678) {
-                expect(overlay.element.css('background-color')).to.equal('red');
-            }
-            else {
-                expect(overlay.element.css('background-color')).to.equal('rgb(255, 0, 0)');
-            }
+            expect(['red', 'rgb(255, 0, 0)']).to.contain(overlay.element.css('background-color'));
             expect(overlay.element.attr('id')).to.equal('myid');
             expect(overlay.element.hasClass('myclass')).to.equal(true);
             expect(overlay.element.is(':hidden')).to.equal(false);
@@ -151,18 +142,30 @@ define(function(require) {
             expect(Overlay.blurOverlays.length).to.be(num);
         });
 
-        it('setPosition', function() {
+        it('setPosition', function(done) {
             overlay.hide().destroy();
             overlay = new Overlay();
             var setPosition = sinon.spy(overlay, '_setPosition');
             expect(setPosition.called).not.to.be.ok();
             overlay.render();
-            expect(setPosition.calledOnce).to.be.ok();
+            expect(setPosition.callCount).to.be(1);
             overlay.show();
-            expect(setPosition.calledTwice).to.be.ok();
+            expect(setPosition.callCount).to.be(2);
+            setTimeout(function() {
+                expect(setPosition.callCount).to.be(2);
+                done();
+            }, 100);
         });
 
-
+        it('set align to null', function() {
+            overlay.hide().destroy();
+            overlay = new Overlay({
+                align: null
+            });
+            var pin = sinon.spy(Position, 'pin');
+            overlay.show();
+            expect(pin.called).not.to.be.ok();
+        });
 
         it("隐藏元素的 Overlay", function() {
             overlay.hide().destroy();
@@ -222,9 +225,7 @@ define(function(require) {
             overlay.get("trigger").off().remove();
         });
 
-
-
-        it('setPosition', function(done) {
+        xit('setPosition when resize', function(done) {
             overlay.hide().destroy();
             overlay = new Overlay();
             var setPosition = sinon.spy(overlay, '_setPosition');
@@ -246,9 +247,75 @@ define(function(require) {
                 setTimeout(function () {
                     expect(setPosition.callCount).to.be(3);
                     done();
-                }, 100);
-            }, 100);
+                }, 200);
+            }, 200);
         });
+
+        it('iframe-shim should work', function() {
+            overlay.hide().destroy();
+            overlay = new Overlay({
+                id: 'testOverlay',
+                width: 300,
+                height: 300,
+                align: {
+                    baseXY: [0, 0]
+                }
+            });
+            overlay.show();
+            if (isIE6) {
+                expect($('#testOverlay').prev()[0].tagName).to.be('IFRAME');
+            }
+        });
+
+    });
+
+    describe('mask', function() {
+
+        var mask;
+
+        beforeEach(function() {
+            mask = require('mask');
+        });
+
+        afterEach(function() {
+            mask.hide();
+        });
+
+        it('mask show', function() {
+            mask.show();
+            expect($('.ui-mask').length).to.be(1);
+            expect($('.ui-mask').is(':visible')).to.be.ok();
+            mask.hide();
+            expect($('.ui-mask').is(':visible')).not.to.be.ok();
+        });
+
+        it('mask has iframe', function() {
+            mask.show();
+            if (isIE6) {
+                expect($('.ui-mask').prev()[0].tagName).to.be('IFRAME');
+            }
+        });
+
+        it('mask default attrs', function() {
+            mask.show();
+            var color = mask.element.css('background-color');
+            expect(color === 'rgb(0, 0, 0)' || color === '#000').to.be(true);
+            expect(Number(mask.element.css('opacity')).toFixed(1)).to.be('0.2');
+        });
+
+        it('mask set attrs', function() {
+            mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
+            var color = mask.element.css('background-color');
+            expect(color === 'rgb(0, 128, 0)' || color === 'green').to.be(true);
+            expect(Number(mask.element.css('opacity')).toFixed(1)).to.be('0.3');
+        });
+
+        it('mask single instance', function() {
+            var oldMask = mask;
+            newMask = require('mask');
+            expect(oldMask).to.be(newMask);
+        });
+
     });
 });
 

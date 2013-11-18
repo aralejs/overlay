@@ -26,6 +26,12 @@ seajs.use(['$', 'mask'], function($, mask) {
 });
 ````
 
+<select>测试</select>
+<select>测试</select>
+<select>测试</select>
+<select>测试</select>
+<select>测试</select>
+
 ## 修改遮罩层(绿色、透明度0.3)
 
 <button id="b">点击显示修改的遮罩层</button>

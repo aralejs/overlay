@@ -2,7 +2,10 @@ define(function(require, exports, module) {
 
     var $ = require('$'),
         Overlay = require('./overlay'),
-        isIE6 = ($.browser || 0).msie && $.browser.version == 6.0,
+
+        ua = (window.navigator.userAgent || "").toLowerCase(),
+        isIE6 = ua.indexOf("msie 6") !== -1,
+
         body = $(document.body),
         doc = $(document);
 
@@ -38,11 +41,6 @@ define(function(require, exports, module) {
                 this.set('height', doc.outerHeight(true));
             }
             return Mask.superclass.show.call(this);
-        },
-
-        setup: function() {
-            // 加载 iframe 遮罩层并与 overlay 保持同步
-            this._setupShim();
         },
 
         _onRenderBackgroundColor: function(val) {

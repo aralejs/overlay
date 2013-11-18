@@ -15,8 +15,8 @@ define(function(require, exports, module) {
 
         attrs: {
             // 基本属性
-            width: '',
-            height: '',
+            width: null,
+            height: null,
             zIndex: 99,
             visible: false,
 
@@ -54,6 +54,17 @@ define(function(require, exports, module) {
             this._setupShim();
             // 窗口resize时，重新定位浮层
             this._setupResize();
+
+            this.after('render', function() {
+                var _pos = this.element.css('position');
+                if (_pos === 'static' || _pos === 'relative') {
+                    this.element.css({
+                        position: 'absolute',
+                        left: '-9999px',
+                        top: '-9999px'
+                    });
+                }
+            });
             // 统一在显示之后重新设定位置
             this.after('show', function() {
                 that._setPosition();
@@ -73,15 +84,18 @@ define(function(require, exports, module) {
             if (!isInDocument(this.element[0])) return;
 
             align || (align = this.get('align'));
-            
+
             // 如果align为空，表示不需要使用js对齐
             if(!align) return;
-            
+
             var isHidden = this.element.css('display') === 'none';
 
             // 在定位时，为避免元素高度不定，先显示出来
             if (isHidden) {
-                this.element.css({ visibility: 'hidden', display: 'block' });
+                this.element.css({
+                    visibility: 'hidden',
+                    display: 'block'
+                });
             }
 
             Position.pin({
@@ -108,7 +122,7 @@ define(function(require, exports, module) {
 
             // 在隐藏和设置位置后，要重新定位
             // 显示后会设置位置，所以不用绑定 shim.sync
-            this.after('hide _setPosition', shim.sync, shim);  
+            this.after('hide _setPosition', shim.sync, shim);
 
             // 除了 parentNode 之外的其他属性发生变化时，都触发 shim 同步
             var attrs = ['width', 'height'];
@@ -117,7 +131,7 @@ define(function(require, exports, module) {
                     this.on('change:' + attr, shim.sync, shim);
                 }
             }
-            
+
             // 在销魂自身前要销毁 shim
             this.before('destroy', shim.destroy, shim);
         },
@@ -126,7 +140,7 @@ define(function(require, exports, module) {
         _setupResize: function() {
             Overlay.allOverlays.push(this);
         },
-        
+
         // 除了 element 和 relativeElements，点击 body 后都会隐藏 element
         _blurHide: function(arr) {
             arr = $.makeArray(arr);
@@ -166,18 +180,31 @@ define(function(require, exports, module) {
     });
 
     // 绑定 resize 重新定位事件
-    var timeout;    
+    var timeout;
+    var winWidth = $(window).width();
+    var winHeight = $(window).height();
     Overlay.allOverlays = [];
+
     $(window).resize(function() {
         timeout && clearTimeout(timeout);
         timeout = setTimeout(function() {
-            $(Overlay.allOverlays).each(function(i, item) {
-                // 当实例为空或隐藏时，不处理
-                if(!item || !item.get('visible')) {
-                    return;
-                }
-                item._setPosition();
-            });
+            var winNewWidth = $(window).width();
+            var winNewHeight = $(window).height();
+
+            // IE678 莫名其妙触发 resize
+            // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
+            if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
+                $(Overlay.allOverlays).each(function(i, item) {
+                    // 当实例为空或隐藏时，不处理
+                    if(!item || !item.get('visible')) {
+                        return;
+                    }
+                    item._setPosition();
+                });
+            }
+
+            winWidth = winNewWidth;
+            winHeight = winNewHeight;
         }, 80);
     });
 
@@ -197,7 +224,7 @@ define(function(require, exports, module) {
             if(!item || !item.get('visible')) {
                 return;
             }
-            
+
             // 遍历 _relativeElements ，当点击的元素落在这些元素上时，不处理
             for(var i=0; i<item._relativeElements.length; i++) {
                 var el = $(item._relativeElements[i])[0];

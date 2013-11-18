@@ -1,5 +1,5 @@
-define("arale/overlay/1.1.0/mask-debug", [ "$-debug", "./overlay-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
-    var $ = require("$-debug"), Overlay = require("./overlay-debug"), isIE6 = ($.browser || 0).msie && $.browser.version == 6, body = $(document.body), doc = $(document);
+define("arale/overlay/1.1.4/mask-debug", [ "$-debug", "./overlay-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+    var $ = require("$-debug"), Overlay = require("./overlay-debug"), ua = (window.navigator.userAgent || "").toLowerCase(), isIE6 = ua.indexOf("msie 6") !== -1, body = $(document.body), doc = $(document);
     // Mask
     // ----------
     // 全屏遮罩层组件
@@ -27,10 +27,6 @@ define("arale/overlay/1.1.0/mask-debug", [ "$-debug", "./overlay-debug", "arale/
             }
             return Mask.superclass.show.call(this);
         },
-        setup: function() {
-            // 加载 iframe 遮罩层并与 overlay 保持同步
-            this._setupShim();
-        },
         _onRenderBackgroundColor: function(val) {
             this.element.css("backgroundColor", val);
         },
@@ -42,8 +38,8 @@ define("arale/overlay/1.1.0/mask-debug", [ "$-debug", "./overlay-debug", "arale/
     module.exports = new Mask();
 });
 
-define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/position-debug", "arale/iframe-shim/1.0.1/iframe-shim-debug", "arale/widget/1.1.0/widget-debug", "arale/base/1.1.0/base-debug", "arale/class/1.0.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
-    var $ = require("$-debug"), Position = require("arale/position/1.0.0/position-debug"), Shim = require("arale/iframe-shim/1.0.1/iframe-shim-debug"), Widget = require("arale/widget/1.1.0/widget-debug");
+define("arale/overlay/1.1.4/overlay-debug", [ "$-debug", "arale/position/1.0.1/position-debug", "arale/iframe-shim/1.0.2/iframe-shim-debug", "arale/widget/1.1.1/widget-debug", "arale/base/1.1.1/base-debug", "arale/class/1.1.0/class-debug", "arale/events/1.1.0/events-debug" ], function(require, exports, module) {
+    var $ = require("$-debug"), Position = require("arale/position/1.0.1/position-debug"), Shim = require("arale/iframe-shim/1.0.2/iframe-shim-debug"), Widget = require("arale/widget/1.1.1/widget-debug");
     // Overlay
     // -------
     // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable）
@@ -51,8 +47,8 @@ define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/p
     var Overlay = Widget.extend({
         attrs: {
             // 基本属性
-            width: "",
-            height: "",
+            width: null,
+            height: null,
             zIndex: 99,
             visible: false,
             // 定位配置
@@ -85,6 +81,16 @@ define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/p
             this._setupShim();
             // 窗口resize时，重新定位浮层
             this._setupResize();
+            this.after("render", function() {
+                var _pos = this.element.css("position");
+                if (_pos === "static" || _pos === "relative") {
+                    this.element.css({
+                        position: "absolute",
+                        left: "-9999px",
+                        top: "-9999px"
+                    });
+                }
+            });
             // 统一在显示之后重新设定位置
             this.after("show", function() {
                 that._setPosition();
@@ -101,6 +107,8 @@ define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/p
             // 不在文档流中，定位无效
             if (!isInDocument(this.element[0])) return;
             align || (align = this.get("align"));
+            // 如果align为空，表示不需要使用js对齐
+            if (!align) return;
             var isHidden = this.element.css("display") === "none";
             // 在定位时，为避免元素高度不定，先显示出来
             if (isHidden) {
@@ -178,17 +186,27 @@ define("arale/overlay/1.1.0/overlay-debug", [ "$-debug", "arale/position/1.0.0/p
     });
     // 绑定 resize 重新定位事件
     var timeout;
+    var winWidth = $(window).width();
+    var winHeight = $(window).height();
     Overlay.allOverlays = [];
     $(window).resize(function() {
         timeout && clearTimeout(timeout);
         timeout = setTimeout(function() {
-            $(Overlay.allOverlays).each(function(i, item) {
-                // 当实例为空或隐藏时，不处理
-                if (!item || !item.get("visible")) {
-                    return;
-                }
-                item._setPosition();
-            });
+            var winNewWidth = $(window).width();
+            var winNewHeight = $(window).height();
+            // IE678 莫名其妙触发 resize
+            // http://stackoverflow.com/questions/1852751/window-resize-event-firing-in-internet-explorer
+            if (winWidth !== winNewWidth || winHeight !== winNewHeight) {
+                $(Overlay.allOverlays).each(function(i, item) {
+                    // 当实例为空或隐藏时，不处理
+                    if (!item || !item.get("visible")) {
+                        return;
+                    }
+                    item._setPosition();
+                });
+            }
+            winWidth = winNewWidth;
+            winHeight = winNewHeight;
         }, 80);
     });
     module.exports = Overlay;

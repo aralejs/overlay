@@ -14,6 +14,8 @@
 
 ---
 
+Overlay 继承了 [widget](http://aralejs.org/widget/)，可使用其中包括 [base](http://aralejs.org/base/)、[class](http://aralejs.org/class/)、[events](http://aralejs.org/events/)、[attribute](http://aralejs.org/base/docs/attribute.html)、[aspect](http://aralejs.org/base/docs/aspect.html) 的属性和方法。
+
 ## 配置说明
 
 ### element `element`
@@ -54,7 +56,7 @@
 
 ### align `object`
 
-定位对象，形似下面代码。这块的定位原理可参照`arale.position`组件的 *pin* 方法。
+定位对象，形似下面代码。这块的定位原理可参照 [arale/position](http://aralejs.org/position/) 组件的 *pin* 方法。
 
 ```js
 {
@@ -88,6 +90,10 @@
 
 
 ## 最佳实践
+
+**注意** 务必将浮层元素在 CSS 上设置 ``position: absolute or fixed``, 并且设置有效的 left/top 值.
+以避免当没有设置 left/top 时, 在浮层元素插入到页面底部后, 瞬间出现浏览器滚动条后, 获取可视区域宽高错误, 以致定位有几像素偏差的问题.
+
 
 1. 直接使用：
 
@@ -166,4 +172,8 @@
         this._blurHide([this.get('trigger')]);
     },
     ```
+
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aralejs/overlay/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

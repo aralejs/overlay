@@ -2,6 +2,10 @@
 
 ---
 
+## 1.2.0
+
+`CHANGED` 按照 spm@3.x 规范升级。
+
 ## 1.1.4
 
 `FIXED` [#12](https://github.com/aralejs/tip/issues/12) 滚动条导致定位不准确

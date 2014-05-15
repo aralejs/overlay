@@ -19,7 +19,7 @@
     "url": "https://github.com/aralejs/overlay/issues"
   },
   "spm": {
-    "main": "src/overlay.js",
+    "main": "overlay.js",
     "dependencies": {
       "jquery": "1.7.2",
       "arale-widget": "1.2.0",

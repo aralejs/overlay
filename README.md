@@ -2,6 +2,7 @@
 
 ---
 
+[![spm package](http://spmjs.io/badge/arale-overlay)](http://spmjs.io/package/arale-overlay)
 [![Build Status](https://secure.travis-ci.org/aralejs/overlay.png)](https://travis-ci.org/aralejs/overlay)
 [![Coverage Status](https://coveralls.io/repos/aralejs/overlay/badge.png?branch=master)](https://coveralls.io/r/aralejs/overlay)
 

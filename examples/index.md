@@ -73,7 +73,7 @@ seajs.use('overlay', function(Overlay) {
 <div id="d2" class="example" style="display:none;">目标元素4，点击页面空白处我会消失</div>
 
 ````javascript
-seajs.use(['overlay', '$'], function(Overlay, $) {
+seajs.use(['overlay', 'jquery'], function(Overlay, $) {
     var testPopup = Overlay.extend({
         attrs : {
             trigger: null

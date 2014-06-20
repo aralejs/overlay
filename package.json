@@ -23,7 +23,7 @@
     "dependencies": {
       "jquery": "1.7.2",
       "arale-widget": "1.2.0",
-      "arale-position": "1.1.0",
+      "position": "1.1.0",
       "arale-iframe-shim": "1.1.0"
     },
     "devDependencies": {

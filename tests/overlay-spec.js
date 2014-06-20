@@ -1,5 +1,5 @@
 var Overlay = require("../src/overlay");
-var Position = require("arale-position");
+var Position = require("position");
 var $ = require("jquery");
 var expect = require("expect.js");
 var sinon = require("sinon");

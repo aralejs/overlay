@@ -1,5 +1,5 @@
 var $ = require("jquery"),
-    Position = require("arale-position"),
+    Position = require("position"),
     Shim = require("arale-iframe-shim"),
     Widget = require("arale-widget");
 

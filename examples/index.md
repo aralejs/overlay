@@ -15,6 +15,7 @@
     display:inline-block;
 }
 </style>
+<script src="../spm_modules/jquery/1.7.2/jquery.js?nowrap"></script>
 
 ## 1. 基本浮层
 
@@ -24,26 +25,25 @@
 <div id="a" class="example">基准元素1</div>
 
 ````javascript
-seajs.use('overlay', function(Overlay) {
-    var o = new Overlay({
-        template: "<div class='overlay'>目标元素1</div>",
-        parentNode: '#c',
-        id: 'myoverlay',
-        style: {
-            color: '#fff'
-        },
-        align: {
-            selfXY: ['-100%', 0],
-            baseElement: '#a',
-            baseXY: [0, 0]
-        }
-    });
-    o.show();
-    o.set('style', {
-        backgroundColor: '#f53379'
-    });
-    o.set('height', 40);
+var Overlay = require('arale-overlay');
+var o = new Overlay({
+    template: "<div class='overlay'>目标元素1</div>",
+    parentNode: '#c',
+    id: 'myoverlay',
+    style: {
+        color: '#fff'
+    },
+    align: {
+        selfXY: ['-100%', 0],
+        baseElement: '#a',
+        baseXY: [0, 0]
+    }
 });
+o.show();
+o.set('style', {
+    backgroundColor: '#f53379'
+});
+o.set('height', 40);
 ````
 ## 2. 全局定位浮层
 
@@ -52,16 +52,15 @@ seajs.use('overlay', function(Overlay) {
 <div id="b" class="example">目标元素2</div>
 
 ````javascript
-seajs.use('overlay', function(Overlay) {
-    var o2 = new Overlay({
-        element: '#b',
-        width: 100,
-        align: {
-            baseXY: [200, 0]
-        }
-    });
-    o2.show();
+var Overlay = require('arale-overlay');
+var o2 = new Overlay({
+    element: '#b',
+    width: 100,
+    align: {
+        baseXY: [200, 0]
+    }
 });
+o2.show();
 ````
 
 ## 3. 点击文档其他地方隐藏自身 `this._blurHide()`
@@ -73,38 +72,37 @@ seajs.use('overlay', function(Overlay) {
 <div id="d2" class="example" style="display:none;">目标元素4，点击页面空白处我会消失</div>
 
 ````javascript
-seajs.use(['overlay', 'jquery'], function(Overlay, $) {
-    var testPopup = Overlay.extend({
-        attrs : {
-            trigger: null
-        },
-        setup: function() {
-            var that = this;
-            testPopup.superclass.setup.call(this);
-            this._setPosition();
-            $(this.get('trigger')).click(function() {
-                that.show();
-            });
-            // 需要调用这句话来实现功能
-            this._blurHide(this.get('trigger')); 
-        }
-    });
-    new testPopup({
-        trigger: '#d1_trigger',
-        element: '#d1',
-        align: {
-            baseElement: '#d1_trigger',
-            baseXY: ['100%', 0]
-        }
-    });
-    new testPopup({
-        trigger: '#d2_trigger',
-        element: '#d2',
-        align: {
-            baseElement: '#d2_trigger',
-            baseXY: ['100%', 0]
-        }
-    });
+var Overlay = require('arale-overlay');
+var testPopup = Overlay.extend({
+    attrs : {
+        trigger: null
+    },
+    setup: function() {
+        var that = this;
+        testPopup.superclass.setup.call(this);
+        this._setPosition();
+        $(this.get('trigger')).click(function() {
+            that.show();
+        });
+        // 需要调用这句话来实现功能
+        this._blurHide(this.get('trigger')); 
+    }
+});
+new testPopup({
+    trigger: '#d1_trigger',
+    element: '#d1',
+    align: {
+        baseElement: '#d1_trigger',
+        baseXY: ['100%', 0]
+    }
+});
+new testPopup({
+    trigger: '#d2_trigger',
+    element: '#d2',
+    align: {
+        baseElement: '#d2_trigger',
+        baseXY: ['100%', 0]
+    }
 });
 ````
 

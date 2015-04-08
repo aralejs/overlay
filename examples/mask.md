@@ -8,21 +8,22 @@
 
 ---
 
+<script src="../spm_modules/jquery/1.7.2/jquery.js?nowrap"></script>
+
 ## 默认遮罩层
 
 <button id="a">点击显示默认遮罩层</button>
 
 ````javascript
-seajs.use(['jquery', 'src/mask'], function($, mask) {
-    $('#a').click(function() {
-        mask.show();
-    });
-    $(document).keyup(function(e) {
-        // keyboard esc
-        if (e.keyCode === 27) {
-            mask.hide();
-        }
-    });
+var mask = require('arale-overlay').Mask;
+$('#a').click(function() {
+    mask.show();
+});
+$(document).keyup(function(e) {
+    // keyboard esc
+    if (e.keyCode === 27) {
+        mask.hide();
+    }
 });
 ````
 
@@ -37,9 +38,8 @@ seajs.use(['jquery', 'src/mask'], function($, mask) {
 <button id="b">点击显示修改的遮罩层</button>
 
 ````javascript
-seajs.use(['jquery', 'src/mask'], function($, mask) {
-    $('#b').click(function() {
-        mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
-    });
+var mask = require('arale-overlay').Mask;
+$('#b').click(function() {
+    mask.set('backgroundColor', 'green').set('opacity', '0.3').show();
 });
 ````

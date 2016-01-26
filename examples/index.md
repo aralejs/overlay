@@ -72,6 +72,7 @@ o2.show();
 <div id="d2" class="example" style="display:none;">目标元素4，点击页面空白处我会消失</div>
 
 ````javascript
+var $ = require('spm-jquery');
 var Overlay = require('arale-overlay');
 var testPopup = Overlay.extend({
     attrs : {

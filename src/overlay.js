@@ -1,14 +1,14 @@
-var $ = require("spm-jquery"),
-    Position = require("spm-position"),
-    Shim = require("arale-iframe-shim"),
-    Widget = require("arale-widget");
+const $ = require("jquery");
+const Position = require("position");
+const Shim = require("arale-iframe-shim");
+const Widget = require("arale-widget");
 
 
 // Overlay
 // -------
 // Overlay 组件的核心特点是可定位（Positionable）和可层叠（Stackable）
 // 是一切悬浮类 UI 组件的基类
-var Overlay = Widget.extend({
+const Overlay = Widget.extend({
 
   attrs: {
     // 基本属性

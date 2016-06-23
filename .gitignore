@@ -11,14 +11,10 @@
 Thumbs.db
 .project
 .*proj
-.svn/
 *.swp
 *.swo
 *.pyc
 *.pyo
-build
 _site
-sea-modules
 .cache
-dist/
-spm_modules
+node_modules/

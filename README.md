@@ -1,8 +1,5 @@
 # Overlay
 
----
-
-[![spm package](http://spmjs.io/badge/arale-overlay)](http://spmjs.io/package/arale-overlay)
 [![Build Status](https://img.shields.io/travis/aralejs/overlay.svg?style=flat)](https://travis-ci.org/aralejs/overlay)
 [![Coverage Status](https://img.shields.io/coveralls/aralejs/overlay.svg?style=flat)](https://coveralls.io/r/aralejs/overlay)
 

@@ -1,6 +1,6 @@
 {
   "name": "arale-overlay",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "基础浮层组件，提供浮层显示隐藏、定位和 select 遮挡等特性。",
   "keywords": [
     "widget"
@@ -18,26 +18,35 @@
   "bugs": {
     "url": "https://github.com/aralejs/overlay/issues"
   },
-  "spm": {
-    "buildArgs": "--ignore jquery"
+  "main": "index.js",
+  "entry": {
+    "index": "./src/index.js"
   },
-  "main": "overlay.js",
   "dependencies": {
     "arale-iframe-shim": "1.1.0",
     "arale-widget": "~1.2.1",
-    "spm-jquery": "1.7.2",
-    "spm-position": "1.1.0"
+    "position": "~1.1.0"
   },
   "devDependencies": {
-    "spm-expect.js": "0.3.1",
-    "spm-sinon": "1.6.0",
-    "spm-webpack": "~1.0.0"
+    "jquery": "1.7.2",
+    "atool-build": "^0.7.8",
+    "atool-doc": "^0.4.3",
+    "atool-test": "^0.4.13",
+    "expect.js": "0.3.1",
+    "spm-sinon": "1.6.0"
   },
   "scripts": {
-    "build": "spm-webpack -c"
+    "build": "rm -rf lib && atool-build -o ./lib/",
+    "test": "atool-test",
+    "doc": "atool-doc"
   },
   "engines": {
     "node": ">=4.0.0"
   },
-  "publishConfig": {}
+  "files": [
+    "lib",
+    "index.js",
+    "package.json",
+    "README.md"
+  ]
 }
